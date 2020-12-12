@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:slacker/widgets/pill_dropdown.dart';
 import 'package:slacker/widgets/state_display_card.dart';
 
-List genderOptions = ['Male', 'Female'];
+//TODO: maybe instead of dots have all state names and the selected underlined or dropdown
 
 class StatePage extends StatefulWidget {
   final List<String> stateDetails;
@@ -48,15 +48,18 @@ class _StatePageState extends State<StatePage> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-            flexibleSpace: Padding(
-              padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-              child: StateDisplayCard(),
-            ),
-            expandedHeight: 250,
-            collapsedHeight: 250,
-            backgroundColor: Colors.transparent,
-            pinned: false),
-        /*SliverAppBar(
+          flexibleSpace: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
+            child: StateDisplayCard(),
+          ),
+          expandedHeight: 250,
+          collapsedHeight: 250,
+          backgroundColor: Colors.transparent,
+          pinned: false,
+          automaticallyImplyLeading: false,
+        ),
+        SliverAppBar(
+          automaticallyImplyLeading: false,
           flexibleSpace: Align(
             alignment: Alignment.topCenter,
             child: Column(
@@ -89,7 +92,7 @@ class _StatePageState extends State<StatePage> {
               topLeft: Radius.circular(10.0),
             ),
           ),
-        ),*/
+        ),
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:slacker/classes/guide_select_helper.dart';
 //import 'package:flutter/services.dart';
 import 'package:slacker/classes/highline_db_provider.dart';
 import 'package:slacker/constants.dart';
@@ -10,6 +11,7 @@ import 'package:slacker/widgets/state_page.dart';
 
 class GuideSelectScreen extends StatefulWidget {
   static const id = 'guide_select_screen';
+  final GuideSelectHelper guideSelectHelper = GuideSelectHelper();
   final Map<String, Map<String, Map<String, List<String>>>> statesJSON;
   final HighlineDbProvider db;
 
@@ -20,11 +22,17 @@ class GuideSelectScreen extends StatefulWidget {
 }
 
 class _GuideSelectScreen extends State<GuideSelectScreen> {
-  int indexNumber;
+  @override
+  void initState() {
+    super.initState();
+    widget.guideSelectHelper.createStatePages(widget.statesJSON);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -34,23 +42,8 @@ class _GuideSelectScreen extends State<GuideSelectScreen> {
       body: SafeArea(
         child: PageView(
           pageSnapping: true,
-          children: [
-            StatePage(
-              stateDetails: stateDetails,
-              pageNumber: 4,
-              pageCount: 8,
-            ),
-            StatePage(
-              stateDetails: stateDetails,
-              pageNumber: 4,
-              pageCount: 8,
-            ),
-            StatePage(
-              stateDetails: stateDetails,
-              pageNumber: 3,
-              pageCount: 8,
-            ),
-          ],
+          children:
+              widget.guideSelectHelper.createStatePages(widget.statesJSON),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
