@@ -56,7 +56,7 @@ class _StatePageState extends State<StatePage> {
             collapsedHeight: 250,
             backgroundColor: Colors.transparent,
             pinned: false),
-        SliverAppBar(
+        /*SliverAppBar(
           flexibleSpace: Align(
             alignment: Alignment.topCenter,
             child: Column(
@@ -75,10 +75,6 @@ class _StatePageState extends State<StatePage> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [CustomDropdown(text: 'hi')],
-                )
               ],
             ),
           ),
@@ -93,7 +89,7 @@ class _StatePageState extends State<StatePage> {
               topLeft: Radius.circular(10.0),
             ),
           ),
-        ),
+        ),*/
         SliverList(
           delegate: SliverChildBuilderDelegate(
             (BuildContext context, int index) {

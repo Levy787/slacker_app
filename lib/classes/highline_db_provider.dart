@@ -42,7 +42,67 @@ class HighlineDbProvider {
     }
   }
 
-  Future<void> getCountryTableData() async {}
+  Future<Map<String, Map<String, Map<String, List<String>>>>>
+      getGuideSelectJSON(String country) async {
+    Map<String, Map<String, Map<String, List<String>>>> stateDetails = {};
+
+    //Add States
+    await getStatesInCountry(country).then(
+      (states) {
+        states.forEach(
+          (state) {
+            stateDetails[state] = {};
+          },
+        );
+      },
+    );
+
+    //Add Regions to State
+    for (var state in stateDetails.keys) {
+      await getRegionsInState(state).then(
+        (regions) {
+          regions.forEach(
+            (region) {
+              stateDetails[state][region] = {};
+            },
+          );
+        },
+      );
+    }
+
+    //Add Areas to Region
+    for (var state in stateDetails.keys) {
+      for (var region in stateDetails[state].keys) {
+        await getAreasInRegion(region).then(
+          (areas) {
+            areas.forEach(
+              (area) {
+                stateDetails[state][region][area] = [];
+              },
+            );
+          },
+        );
+      }
+    }
+
+    //Add Guides to Area
+    for (var state in stateDetails.keys) {
+      for (var region in stateDetails[state].keys) {
+        for (var area in stateDetails[state][region].keys) {
+          await getGuidesInArea(area).then(
+            (guides) {
+              guides.forEach(
+                (guide) {
+                  stateDetails[state][region][area].add(guide);
+                },
+              );
+            },
+          );
+        }
+      }
+    }
+    return stateDetails;
+  }
 
   Future<Map<String, Map<String, Map<String, List<String>>>>>
       getStateDetailData(String state) async {

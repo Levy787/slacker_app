@@ -36,11 +36,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
 
   Future<void> initDatabase() async {
     await db.init();
-    List<dynamic> states = await db.getStatesInCountry('Australia');
+    Map<String, Map<String, Map<String, List<String>>>> statesJSON =
+        await db.getGuideSelectJSON('Australia');
     Navigator.popAndPushNamed(
       context,
-      StateScreen.id, //GuideSelectScreen.id,
-      arguments: {'HighlineDbProvider': db, 'states': states},
+      GuideSelectScreen.id, //GuideSelectScreen.id,
+      arguments: {'HighlineDbProvider': db, 'states': statesJSON},
     );
   }
 

@@ -10,10 +10,10 @@ import 'package:slacker/widgets/state_page.dart';
 
 class GuideSelectScreen extends StatefulWidget {
   static const id = 'guide_select_screen';
-  /*final List<dynamic> states;
+  final Map<String, Map<String, Map<String, List<String>>>> statesJSON;
   final HighlineDbProvider db;
 
-  GuideSelectScreen({this.states, this.db});*/
+  GuideSelectScreen({this.statesJSON, this.db});
 
   @override
   _GuideSelectScreen createState() => _GuideSelectScreen();
@@ -21,7 +21,6 @@ class GuideSelectScreen extends StatefulWidget {
 
 class _GuideSelectScreen extends State<GuideSelectScreen> {
   int indexNumber;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -58,6 +57,9 @@ class _GuideSelectScreen extends State<GuideSelectScreen> {
         fixedColor: Colors.red,
         unselectedItemColor: Colors.black,
         showUnselectedLabels: true,
+        onTap: (index) {
+          print(widget.statesJSON);
+        },
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.rss_feed), label: 'Feed'),
           BottomNavigationBarItem(icon: Icon(Icons.landscape), label: 'Guide'),

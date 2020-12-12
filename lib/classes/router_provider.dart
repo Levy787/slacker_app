@@ -57,9 +57,9 @@ class RouteProvider {
     return MaterialPageRoute(
       builder: (context) {
         return GuideSelectScreen(
-            /*db: arguments['HighlineDbProvider'],
-          states: arguments['states'],*/
-            );
+          db: arguments['HighlineDbProvider'],
+          statesJSON: arguments['states'],
+        );
       },
     );
   }
