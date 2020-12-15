@@ -88,36 +88,18 @@ class _StatePageState extends State<StatePage> {
                   ),
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
+                    Text('Line Type:'),
+                    SizedBox(width: 10.0),
                     DropdownButton(
-                      value: 1,
+                      value: 0,
                       items: [
-                        DropdownMenuItem(child: Text('Item 1'), value: 0),
-                        DropdownMenuItem(child: Text('Item 2'), value: 1),
-                        DropdownMenuItem(child: Text('Item 3'), value: 2),
-                      ],
-                      onChanged: (value) {
-                        print(value);
-                      },
-                    ),
-                    DropdownButton(
-                      value: 1,
-                      items: [
-                        DropdownMenuItem(child: Text('Item 1'), value: 0),
-                        DropdownMenuItem(child: Text('Item 2'), value: 1),
-                        DropdownMenuItem(child: Text('Item 3'), value: 2),
-                      ],
-                      onChanged: (value) {
-                        print(value);
-                      },
-                    ),
-                    DropdownButton(
-                      value: 1,
-                      items: [
-                        DropdownMenuItem(child: Text('Item 1'), value: 0),
-                        DropdownMenuItem(child: Text('Item 2'), value: 1),
-                        DropdownMenuItem(child: Text('Item 3'), value: 2),
+                        DropdownMenuItem(child: Text('All'), value: 0),
+                        DropdownMenuItem(child: Text('Highline'), value: 1),
+                        DropdownMenuItem(child: Text('Midline'), value: 2),
+                        DropdownMenuItem(child: Text('Waterline'), value: 3),
+                        DropdownMenuItem(child: Text('Parkline'), value: 4),
                       ],
                       onChanged: (value) {
                         print(value);
@@ -148,14 +130,16 @@ class _StatePageState extends State<StatePage> {
                   title: Text('Comming Soon!'),
                 );
               } else {
-                List<Widget> stateDetailList =
-                    generateGuideList(widget.stateData, widget.stateName);
+                List<Widget> stateDetailList = generateRegionExpansionTiles(
+                    widget.stateData, widget.stateName);
                 return stateDetailList[index];
               }
             },
             childCount: widget.stateData.length == 0
                 ? 1
-                : generateGuideList(widget.stateData, widget.stateName).length,
+                : generateRegionExpansionTiles(
+                        widget.stateData, widget.stateName)
+                    .length,
             //childCount: widget.stateDetails.length,
           ),
         ),
@@ -164,64 +148,40 @@ class _StatePageState extends State<StatePage> {
   }
 }
 
-List<Widget> generateGuideList(
+List<Widget> generateRegionExpansionTiles(
     Map<String, Map<String, List<String>>> stateData, String stateName) {
   List<Widget> returnList = [];
   stateData.forEach((region, value) {
-    returnList.add(ListRegion(region));
-    value.forEach((area, value) {
-      returnList.add(ListArea(area));
-      value.forEach((guide) {
-        returnList.add(ListGuide(guide));
-      });
-    });
+    returnList.add(Theme(
+      data: ThemeData(
+        accentColor: Colors.black,
+      ),
+      child: ExpansionTile(
+        title: Text(region),
+        children: generateAreaExpansionTiles(stateData[region]),
+      ),
+    ));
   });
   return returnList;
 }
 
-class ListRegion extends StatelessWidget {
-  final String region;
-  ListRegion(this.region);
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        ListTile(
-          title: Text(
-            region,
-            style: TextStyle(fontSize: 22.0, fontWeight: FontWeight.bold),
-          ),
-        ),
-        Divider(
-          height: 0.5,
-          thickness: 3.0,
-        ),
-      ],
-    );
-  }
+List<Widget> generateAreaExpansionTiles(Map<String, List<String>> regionData) {
+  List<Widget> returnList = [];
+  regionData.forEach((area, value) {
+    returnList.add(ExpansionTile(
+      title: Text(area),
+      children: generateGuideCards(regionData[area]),
+    ));
+  });
+  return returnList;
 }
 
-class ListArea extends StatelessWidget {
-  final String area;
-  ListArea(this.area);
-
-  @override
-  Widget build(BuildContext context) {
-    return Theme(
-      data: ThemeData(accentColor: Colors.black),
-      child: ExpansionTile(
-        title: Text(area, style: TextStyle(fontSize: 18.0)),
-        tilePadding: EdgeInsets.symmetric(horizontal: 10.0),
-        children: [
-          Text('Item 1'),
-          Text('Item 1'),
-          Text('Item 1'),
-          Text('Item 1'),
-        ],
-      ),
-    );
-  }
+List<Widget> generateGuideCards(List<String> guideData) {
+  List<Widget> returnList = [];
+  guideData.forEach((guide) {
+    returnList.add(ListGuide(guide));
+  });
+  return returnList;
 }
 
 class ListGuide extends StatelessWidget {
