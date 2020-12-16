@@ -1,9 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:slacker/classes/state_line_info.dart';
 import 'package:slacker/widgets/state_display_card.dart';
 import 'package:slacker/widgets/custom_expansion_tile.dart';
+import 'package:slacker/widgets/app_bars/sliver_image_app_bar.dart';
 
 //TODO: maybe instead of dots have all state names and the selected underlined or dropdown
+
+const double kIndexDotSize = 10.0;
+const Color kIndexDotColor = Colors.black;
 
 class StatePage extends StatefulWidget {
   final String stateName;
@@ -11,37 +16,40 @@ class StatePage extends StatefulWidget {
   final int pageNumber;
   final int pageCount;
 
-  StatePage({this.stateName, this.stateData, this.pageNumber, this.pageCount});
+  StatePage({
+    this.stateName,
+    this.stateData,
+    this.pageNumber,
+    this.pageCount,
+  });
 
   @override
   _StatePageState createState() => _StatePageState();
 }
 
 class _StatePageState extends State<StatePage> {
-  int highlineDropdownIndex = 0;
-  int regionDropdownIndex = 0;
-  int areaDropdownIndex = 0;
+  int lineTypeDropdownIndex = 0;
 
   List<Widget> generatePageIndexDots(int pageNumber, int pageCount) {
-    List<Widget> returnList = [];
+    List<Widget> dots = [];
+
     for (var i = 1; i <= pageCount; i++) {
-      if (i == pageNumber) {
-        returnList.add(
-          Icon(
-            Icons.brightness_1,
-            size: 10,
-          ),
-        );
-      } else {
-        returnList.add(
-          Icon(
-            Icons.brightness_1_outlined,
-            size: 10,
-          ),
-        );
-      }
+      dots.add(
+        Icon(
+          i == pageNumber ? Icons.brightness_1 : Icons.brightness_1_outlined,
+          size: kIndexDotSize,
+          color: kIndexDotColor,
+        ),
+      );
     }
-    return returnList;
+    return dots;
+  }
+
+  String getStateImageDirectory(String stateName) {
+    String baseDirectory = 'assets/images/states/';
+    String imageName =
+        '${stateName.toLowerCase().replaceAll(' ', '_')}_state.png';
+    return '$baseDirectory$imageName';
   }
 
   @override
@@ -49,17 +57,13 @@ class _StatePageState extends State<StatePage> {
     return CustomScrollView(
       cacheExtent: 2000, //TODO: Implement keep cache alive while in pageView
       slivers: [
-        ///This is the Image appBar
-        SliverAppBar(
-          flexibleSpace: Padding(
-            padding: const EdgeInsets.fromLTRB(20, 0, 20, 20),
-            child: StateDisplayCard(),
+        SliverImageAppBar(
+          imageDirectory: getStateImageDirectory(widget.stateName),
+          stateLineInfo: StateLineInfo(
+            averageLineLength: 35,
+            averageStars: 2.5,
+            numberOfLines: 76,
           ),
-          expandedHeight: 250,
-          collapsedHeight: 250,
-          backgroundColor: Colors.transparent,
-          pinned: false,
-          automaticallyImplyLeading: false,
         ),
 
         ///This is the Pinned Grey appBar
