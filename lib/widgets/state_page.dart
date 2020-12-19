@@ -4,6 +4,7 @@ import 'package:slacker/classes/state_line_info.dart';
 import 'package:slacker/widgets/state_display_card.dart';
 import 'package:slacker/widgets/custom_expansion_tile.dart';
 import 'package:slacker/widgets/app_bars/sliver_image_app_bar.dart';
+import 'package:slacker/widgets/app_bars/sliver_heading_app_bar.dart';
 
 //TODO: maybe instead of dots have all state names and the selected underlined or dropdown
 
@@ -59,82 +60,11 @@ class _StatePageState extends State<StatePage> {
       slivers: [
         SliverImageAppBar(
           imageDirectory: getStateImageDirectory(widget.stateName),
-          stateLineInfo: StateLineInfo(
-            averageLineLength: 35,
-            averageStars: 2.5,
-            numberOfLines: 76,
-          ),
         ),
-
-        ///This is the Pinned Grey appBar
-        SliverAppBar(
-          automaticallyImplyLeading: false,
-          flexibleSpace: Align(
-            alignment: Alignment.topCenter,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                SizedBox(height: 7.5),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: generatePageIndexDots(
-                      widget.pageNumber, widget.pageCount),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 5.0, horizontal: 10.0),
-                    child: FittedBox(
-                      child: Text(
-                        widget.stateName,
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        'Line Type:',
-                        style: TextStyle(color: Colors.black),
-                      ),
-                      SizedBox(width: 10.0),
-                      DropdownButton(
-                        value: 0,
-                        items: [
-                          DropdownMenuItem(child: Text('All'), value: 0),
-                          DropdownMenuItem(child: Text('Highline'), value: 1),
-                          DropdownMenuItem(child: Text('Midline'), value: 2),
-                          DropdownMenuItem(child: Text('Waterline'), value: 3),
-                          DropdownMenuItem(child: Text('Parkline'), value: 4),
-                        ],
-                        onChanged: (value) {
-                          print(value);
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-          expandedHeight: 120,
-          collapsedHeight: 120,
-          backgroundColor: Colors.grey[300],
-          elevation: 0,
-          pinned: true,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.only(
-              topRight: Radius.circular(10.0),
-              topLeft: Radius.circular(10.0),
-            ),
-          ),
+        SliverHeadingAppBar(
+          navigationDots:
+              generatePageIndexDots(widget.pageNumber, widget.pageCount),
+          stateName: widget.stateName,
         ),
         SliverList(
           delegate: SliverChildBuilderDelegate(

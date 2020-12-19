@@ -3,6 +3,7 @@ import 'package:slacker/screens/state_screen.dart';
 import 'package:slacker/screens/loading_screen.dart';
 import 'package:slacker/screens/state_detail_screen.dart';
 import 'package:slacker/screens/guide_select_screen.dart';
+import 'package:slacker/screens/tab_guide_select_screen.dart';
 import 'package:slacker/screens/welcome_screen.dart';
 import 'package:slacker/classes/highline_db_provider.dart';
 
@@ -16,6 +17,8 @@ class RouteProvider {
       return generateLoadingRoute(settings);
     } else if (settings.name == GuideSelectScreen.id) {
       return generateGuideSelectRoute(settings);
+    } else if (settings.name == TabGuideSelectScreen.id) {
+      return tabGenerateGuideSelectRoute(settings);
     } else {
       return null;
     }
@@ -57,6 +60,18 @@ class RouteProvider {
     return MaterialPageRoute(
       builder: (context) {
         return GuideSelectScreen(
+          db: arguments['HighlineDbProvider'],
+          statesJSON: arguments['states'],
+        );
+      },
+    );
+  }
+
+  static Route<dynamic> tabGenerateGuideSelectRoute(RouteSettings settings) {
+    final Map arguments = settings.arguments;
+    return MaterialPageRoute(
+      builder: (context) {
+        return TabGuideSelectScreen(
           db: arguments['HighlineDbProvider'],
           statesJSON: arguments['states'],
         );
