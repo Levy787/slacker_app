@@ -8,6 +8,8 @@ class SearchField extends StatelessWidget {
   final bool autofocus;
   final Color fillColor;
   final IconData leadingIcon;
+  final Function onTap;
+  final FocusNode focusNode;
 
   SearchField({
     this.hintText = '',
@@ -17,11 +19,16 @@ class SearchField extends StatelessWidget {
     this.autofocus = false,
     this.fillColor = Colors.white,
     this.leadingIcon = Icons.search,
+    this.onTap,
+    this.focusNode,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      onTap: onTap,
+      focusNode: focusNode,
+      onEditingComplete: onTap,
       autofocus: autofocus,
       onChanged: (value) {}, //TODO: Implement on Changed
       textAlign: TextAlign.start,
