@@ -1,15 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:slacker/classes/state_line_info.dart';
 
 class StateDisplayCard extends StatelessWidget {
   final String imageDirectory;
-  final StateLineInfo stateLineInfo;
+  //final StateLineInfo stateLineInfo;
 
   StateDisplayCard({
     this.imageDirectory,
-    this.stateLineInfo,
+    //this.stateLineInfo,
   });
 
   @override

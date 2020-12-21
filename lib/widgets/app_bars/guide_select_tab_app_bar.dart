@@ -24,6 +24,10 @@ class GuideSelectTabAppBar extends StatelessWidget {
     return SliverAppBar(
       automaticallyImplyLeading: false,
       elevation: 2.0,
+      floating: true,
+      pinned: true,
+      backgroundColor: Colors.white,
+      forceElevated: innerBoxIsScrolled,
       title: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -63,15 +67,16 @@ class GuideSelectTabAppBar extends StatelessWidget {
           )
         ],
       ),
-      floating: true,
-      pinned: true,
-      backgroundColor: Colors.white,
-      forceElevated: innerBoxIsScrolled,
       bottom: TabBar(
         labelColor: Colors.black,
         indicatorColor: Colors.black,
         isScrollable: true,
-        tabs: tabs.map((String name) => Tab(text: name)).toList(),
+        labelStyle: TextStyle(fontSize: 18.0),
+        tabs: tabs
+            .map((String name) => Tab(
+                  text: name,
+                ))
+            .toList(),
       ),
     );
   }

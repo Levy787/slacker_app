@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slacker/classes/highline_db_provider.dart';
-import 'package:slacker/screens/guide_select_screen.dart';
-import 'package:slacker/screens/state_screen.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:slacker/screens/tab_guide_select_screen.dart';
+import 'package:slacker/screens/guide_select_screen.dart';
 
 //TODO: bool for whether to init the database
 //TODO: Come here when a query is run (dont init database and pass database object)
@@ -41,7 +39,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         await db.getGuideSelectJSON('Australia');
     Navigator.popAndPushNamed(
       context,
-      TabGuideSelectScreen.id, //GuideSelectScreen.id,
+      GuideSelectScreen.id, //GuideSelectScreen.id,
       arguments: {'HighlineDbProvider': db, 'states': statesJSON},
     );
   }

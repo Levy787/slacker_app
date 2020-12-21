@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:slacker/classes/state_line_info.dart';
 import 'package:slacker/widgets/state_display_card.dart';
 
 //TODO: May now be able to delete stateDisplayCard and StateLineInfo files

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 //TODO: implement something to keep widgets alive when scrolling up
+//Page storage Key
 
 class CustomExpansionTile extends StatefulWidget {
   final Widget headerUnselected;
@@ -52,13 +53,9 @@ class _CustomExpansionTileState extends State<CustomExpansionTile> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: _buildList(),
-      ),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: _buildList(),
     );
   }
 }
