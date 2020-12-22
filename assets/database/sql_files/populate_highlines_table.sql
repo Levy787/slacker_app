@@ -378,3 +378,31 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	id FROM GuideAreas
 	WHERE guideAreaName = "Flew's Flutes";
 	
+-- Freycinet, Nicholas' Needle
+	
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"Line Name", 
+	130, 
+	60, 
+	0, 
+	"Brendon Plaza, Ian Bool, Jacob Grenier, Max Peirce, Eric Peirce, Stepan Novikov, Divya Gordon, Chris Wallace", 
+	NULL, 
+	"Max Peirce", 
+	NULL, 
+	"The pillar can be found on Thesarvo. Bring a standard rack of cams from micro to #2 along with a small selection of nuts (micro to large) and roughly 10 alpine draws. Expect the placements to be average and the climbing to be around grade 17 on average rock quality with high ledge fall potential. To find the start scramble up into the large east notch and abseil 10-15m down the other side to a hanging belay on the spiky shrubs. P1 - climb the mossy wall up the easiest weakness, trending left and mounting a few tricky mantles. Follow the line of easiest weakness up the jam crack (passing old piton) and into difficult vegetated mantle. Build belay here. P2 - scramble up diagonal slope to the left (15m). P3 - Up the easy but barely secured boulders, belay from a large boulder and single bolt on the far side of the top. A 60m rope is enough to rap back down into the notch with (30mish)", 
+	NULL, 
+	"Stunning line and the most obvious king line in the region.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL ,
+	"Equalise a couple medium sized eucalyptus trees roughly 12m back from the edge and build a masterpoint on top of the prominent dolerite boulder/spire.", 
+	"As for main (super long dyneema whoopies and rope pro are handy)", 
+	"Equalise a number of small shrubs, boulders and the single bolt and medium boulder. Bring rope pro", 
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "TNicholas' Needle";
+	
