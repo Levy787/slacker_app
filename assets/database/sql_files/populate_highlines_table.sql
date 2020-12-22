@@ -297,3 +297,84 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main",
 	id FROM GuideAreas
 	WHERE guideAreaName = "Cataract Gorge";
+	
+-- Ben Lomond
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"Line Name", 
+	80, 
+	80, 
+	3, 
+	"Stepan Novikov, Divya Gordon, Charlie Horton, Brendon Plaza, Chris Wallace, Art Ho-Baley", 
+	NULL, 
+	"Stepan Novikov", 
+	"01/02/2019", 
+	NULL, 
+	NULL, 
+	"Beautiful Line, slightly difficult to get onto on the RHS (no ledges) and requiring some exposed scrambling and rock hops to get to the LHS anchor. Clean falls the entire way and great direct height in the middle.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL ,
+	"A series of boulder wraps and trad gear (medium cams and nuts) using a prominent flat topped pillar as an A-frame (roughly 1.5m x 1.5m on top)", 
+	"As for main", 
+	"A series of wraps and Trad gear using another flat topped pillar as an A-frame.", 
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Jacob's Ladder";
+	
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"Line Name", 
+	45, 
+	NULL, 
+	0, 
+	"Jerry M, Faith Dickey, Preston Allen-Bruce, Max Silver, + more", 
+	"01/01/2017", 
+	"Probably all involved", 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL ,
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL,
+	id FROM GuideAreas
+	WHERE guideAreaName = "Flew's Flutes";
+	
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 2,
+	"Line Name", 
+	35, 
+	NULL, 
+	0, 
+	"Preston Allen-Bruce, Max Silver, Andrew", 
+	"01/01/2018", 
+	"Probably all involved", 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL ,
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL,
+	id FROM GuideAreas
+	WHERE guideAreaName = "Flew's Flutes";
+	
