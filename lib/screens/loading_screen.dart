@@ -39,7 +39,7 @@ class _LoadingScreenState extends State<LoadingScreen> {
         await db.getGuideSelectJSON('Australia');
     Navigator.popAndPushNamed(
       context,
-      GuideSelectScreen.id, //GuideSelectScreen.id,
+      GuideSelectScreen.id,
       arguments: {'HighlineDbProvider': db, 'states': statesJSON},
     );
   }

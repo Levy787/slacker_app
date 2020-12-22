@@ -156,85 +156,147 @@ class HighlineDbProvider {
     return stateDetails;
   }
 
+/*
+  Future<Map<String, Map<String, Map<String, List<String>>>>> getGuideData(
+      String guide) async {
+    Map<String, Map<String, Map<String, List<String>>>> stateDetails = {
+      state: {}
+    };
+
+    for (var state in stateDetails.keys) {
+      await getRegionsInState(state).then(
+        (regions) {
+          regions.forEach(
+            (region) {
+              stateDetails[state][region] = {};
+            },
+          );
+        },
+      );
+    }
+
+    //Add Areas to Region
+    for (var state in stateDetails.keys) {
+      for (var region in stateDetails[state].keys) {
+        await getAreasInRegion(region).then(
+          (areas) {
+            areas.forEach(
+              (area) {
+                stateDetails[state][region][area] = [];
+              },
+            );
+          },
+        );
+      }
+    }
+
+    //Add Guides to Area
+    for (var state in stateDetails.keys) {
+      for (var region in stateDetails[state].keys) {
+        for (var area in stateDetails[state][region].keys) {
+          await getGuidesInArea(area).then(
+            (guides) {
+              guides.forEach(
+                (guide) {
+                  stateDetails[state][region][area].add(guide);
+                },
+              );
+            },
+          );
+        }
+      }
+    }
+    return stateDetails;
+  }*/
+
   Future<List<dynamic>> getStatesInCountry(String country) async {
     return await getChildrenItemsFromParent(
-        parentName: country,
-        childReturnCol: 'stateName',
-        childTable: 'States',
-        parentColName: 'countryName',
-        parentTable: 'Countries');
+      parentName: country,
+      childReturnCol: 'stateName',
+      childTable: 'States',
+      parentColName: 'countryName',
+      parentTable: 'Countries',
+    );
   }
 
   Future<List<dynamic>> getRegionsInState(String state) async {
     return await getChildrenItemsFromParent(
-        parentName: state,
-        childReturnCol: 'regionName',
-        childTable: 'Regions',
-        parentColName: 'stateName',
-        parentTable: 'States');
+      parentName: state,
+      childReturnCol: 'regionName',
+      childTable: 'Regions',
+      parentColName: 'stateName',
+      parentTable: 'States',
+    );
   }
 
   Future<List<dynamic>> getAreasInRegion(String region) async {
     return await getChildrenItemsFromParent(
-        parentName: region,
-        childReturnCol: 'areaName',
-        childTable: 'Areas',
-        parentColName: 'regionName',
-        parentTable: 'Regions');
+      parentName: region,
+      childReturnCol: 'areaName',
+      childTable: 'Areas',
+      parentColName: 'regionName',
+      parentTable: 'Regions',
+    );
   }
 
   Future<List<dynamic>> getGuidesInArea(String area) async {
     return await getChildrenItemsFromParent(
-        parentName: area,
-        childReturnCol: 'guideName',
-        childTable: 'Guides',
-        parentColName: 'areaName',
-        parentTable: 'Areas');
+      parentName: area,
+      childReturnCol: 'guideName',
+      childTable: 'Guides',
+      parentColName: 'areaName',
+      parentTable: 'Areas',
+    );
   }
 
   Future<List<dynamic>> getGuideAreasInGuide(String guide) async {
     return await getChildrenItemsFromParent(
-        parentName: guide,
-        childReturnCol: 'guideAreaName',
-        childTable: 'GuideAreas',
-        parentColName: 'guideName',
-        parentTable: 'Guides');
+      parentName: guide,
+      childReturnCol: 'guideAreaName',
+      childTable: 'GuideAreas',
+      parentColName: 'guideName',
+      parentTable: 'Guides',
+    );
   }
 
-  Future<List<dynamic>> getHighlineIdsInGuideArea(String guideArea) async {
+  Future<List<dynamic>> getHighlinesInGuideArea(String guideArea) async {
     return await getChildrenItemsFromParent(
-        parentName: guideArea,
-        childReturnCol: 'id',
-        childTable: 'Highlines',
-        parentColName: 'guideAreaName',
-        parentTable: 'GuideAreas');
+      parentName: guideArea,
+      childReturnCol: 'id',
+      childTable: 'Highlines',
+      parentColName: 'guideAreaName',
+      parentTable: 'GuideAreas',
+    );
   }
 
-  Future<List<dynamic>> getMidlineIdsInGuideArea(String guideArea) async {
+  Future<List<dynamic>> getMidlinesInGuideArea(String guideArea) async {
     return await getChildrenItemsFromParent(
-        parentName: guideArea,
-        childReturnCol: 'id',
-        childTable: 'Midlines',
-        parentColName: 'guideAreaName',
-        parentTable: 'GuideAreas');
+      parentName: guideArea,
+      childReturnCol: 'id',
+      childTable: 'Midlines',
+      parentColName: 'guideAreaName',
+      parentTable: 'GuideAreas',
+    );
   }
 
-  Future<List<dynamic>> getWaterlineIdsInGuideArea(String guideArea) async {
+  Future<List<dynamic>> getWaterlinesInGuideArea(String guideArea) async {
     return await getChildrenItemsFromParent(
-        parentName: guideArea,
-        childReturnCol: 'id',
-        childTable: 'Waterlines',
-        parentColName: 'guideAreaName',
-        parentTable: 'GuideAreas');
+      parentName: guideArea,
+      childReturnCol: 'id',
+      childTable: 'Waterlines',
+      parentColName: 'guideAreaName',
+      parentTable: 'GuideAreas',
+    );
   }
 
-  Future<List<dynamic>> getParklineIdsInGuideArea(String guideArea) async {
+  Future<List<dynamic>> getParklinesInGuideArea(String guideArea) async {
     return await getChildrenItemsFromParent(
-        parentName: guideArea,
-        childReturnCol: 'id',
-        childTable: 'Parklines',
-        parentColName: 'guideAreaName',
-        parentTable: 'GuideAreas');
+      parentName: guideArea,
+      childReturnCol: 'id',
+      childTable: 'Parklines',
+      parentColName: 'guideAreaName',
+      parentTable: 'GuideAreas',
+    );
   }
 
   Future<List<dynamic>> getChildrenItemsFromParent({

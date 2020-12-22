@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:slacker/screens/loading_screen.dart';
 import 'package:slacker/screens/guide_select_screen.dart';
+import 'package:slacker/screens/guide_screen.dart';
 import 'package:slacker/screens/welcome_screen.dart';
 import 'package:slacker/classes/highline_db_provider.dart';
 
@@ -10,6 +11,8 @@ class RouteProvider {
       return generateLoadingRoute(settings);
     } else if (settings.name == GuideSelectScreen.id) {
       return generateGuideSelectRoute(settings);
+    } else if (settings.name == GuideScreen.id) {
+      return generateGuideRoute(settings);
     } else {
       return null;
     }
@@ -30,6 +33,17 @@ class RouteProvider {
         return GuideSelectScreen(
           db: arguments['HighlineDbProvider'],
           statesJSON: arguments['states'],
+        );
+      },
+    );
+  }
+
+  static Route<dynamic> generateGuideRoute(RouteSettings settings) {
+    final Map arguments = settings.arguments;
+    return MaterialPageRoute(
+      builder: (context) {
+        return GuideScreen(
+          guideName: arguments['guideName'],
         );
       },
     );

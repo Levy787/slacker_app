@@ -1,6 +1,245 @@
-INSERT INTO Highlines (highlineName, length, height, stars, gpsLat, gpsLon, 
-warnings, description, tensionEnd, tensionEndMainAnchor, tensionEndBackupAnchor, 
-staticEndMainAnchor, staticEndBackupAnchor, parentID)
-	SELECT '?', 
-	id FROM Guides 
-	WHERE areaName='?';
+/*
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT highlineNumber,
+	highlineName, 
+	length, 
+	height, 
+	stars, 
+	whoEstablished, 
+	whenEstablished, 
+	whoFA, 
+	whenFA, 
+	climbingBeta, 
+	warnings, 
+	description, 
+	tagging, 
+	tensionEnd, 
+	gpsLatTensionEnd REAL,
+	gpsLonStaticEnd REAL,
+	gpsLatTensionEnd REAL,
+	gpsLonStaticEnd REAL,
+	tensionEndMainAnchor, 
+	tensionEndBackupAnchor, 
+	staticEndBackupAnchor, 
+	staticEndMainAnchor,
+	id FROM GuideAreas
+	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
+*/
+
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"Harlequin",
+	21,
+	20,
+	3,
+	"Simon Young, Levi Quilliam, Rye Stellard, Drew Abernathy, Sienna DeAngils, Will DeAngils",
+	"March 29th 2019",
+	"Levi Quilliam, Simon Young, Rye Stellard",
+	"March 29th 2019",
+	NULL,
+	NULL,
+	"Beautiful beginner line and one of the easiest rigs here. The boulder on the LHS slightly overhangs the water and is a classic big cliff jump, looks smaller than it actually is.",
+	"Walk the line around the top of the cliff.",
+	"Northern",
+	NULL,
+	NULL,
+ 	NULL,
+	NULL, 
+	"Sling flat flake systems on top of enormous square boulder (3m opened up plus a 3m girth hitched on (double both these up for main and backup)",
+	"Find a few additional flakes or cam placements to stop the masterpoint from moving around too much.",
+	"Another 10m+ of spansets or rope with lots of rope protection",
+	"Small abseil down to large slightly chossy pillar (11m of spansets to wrap it)",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
+
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 2,
+	"Lung Snacks",
+	20,
+	20,
+	3,
+	"Chris W, Jack M, Adam E",
+	NULL,
+	"Max Lee-abbott, Ian Bonnar Bool, Jacob Greiner, Abby Watkins, Chris Wallace, Brendon Plaza, Michael Siriani, Daniel Sinanian, Brad Graham, Max Silver, Preston Bruce, Garrison Rowland, Andrew Criag, Tomas Dabasinskas, Drew Abernathy, Adam Evans, Kyle Beall, Omer, Roberto De Oliveira, Loraine Dawes, Plus more...",
+	NULL,
+	NULL,
+	NULL,
+	"Beautiful beginner line however also one of the most challenging to rig and impossible to get level without an a frame (#0.75-0.5 cam and large offset nut for front stabilizing points).",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+ 	NULL,
+	NULL,
+	"Easy downclimb on ledges to a good horizontal crack (large nuts, hexes and #1-#0.75 cams)",
+	"Small to medium cams and/or rap rope",
+	"Sling flat flake systems on top of enormous square boulder",
+	"Find a few additional flakes or cam placements to stop the masterpoint from moving around too much.",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
+
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 3,
+	"Ask Toni",
+	15,
+	15,
+	1,
+	"Toe-knee Sterai, Rick Kromhust, Dylan Tubaro, Henry Macname",
+	"Dec 2019",
+	"Toe-knee Sterai, Rick Kromhust", 
+	"Dec 2019",
+	NULL,
+	NULL,
+	"A much smaller and accidentally rigged alternative to ‘Old School’.",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+ 	NULL,
+	NULL,
+	"Small rap down ‘Beowulf’ to build an anchor from a series of flakes and cams (basically 2m lower than ‘Lung snacks’ anchor)",
+	"As for main",
+	"Sling medium-ish boulders that are the main way to climb up onto the enormous boulder.",
+	"more boulder wrapping",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
+
+
+
+
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"Unknown Name",
+	85,
+	20,
+	2,
+	"Stepan Novikov, Jack Vitnell and additional WWW attendees", 
+	"01/01/2020",
+	"Thomas May, Max Peirce, Danie8l Sinanian, Jacob Grenier, Brendon Plaza, Garrison Rowland, Andrew Craig, Trent Williams, Adam Evans, Roberto De Olivira, Drew Abernathy",
+	"01/01/2020",
+	NULL,
+	NULL,
+	"Very pretty and ‘immersive’ line. Not very high so use a static webbing for backup but a great rig nonetheless.",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"Medium to large nuts and a large boulder sling far back, 20m of static for main and backup plus lots of rope pro.",
+	"As for main",
+	"Med to Large cams plus wrap huge slanted boulder, 25m of static to equalise all points plus lots of rope pro.",
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Lassie’s Wall / Big Zawn";
+
+
+
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 2,
+	"Whipper Tipper",
+	35,
+	50,
+	2,
+	"Chen, Axel and Levi",
+	"2017",
+	"Alex Webber",
+	"2017",
+	NULL,
+	"Although the line was first rigged by wrapping the boulder on the northern side, it is reccomended not to wrap it but rather sling trees behind the boulder and rest the anchor on top of this boulder.",
+	"Although a tedious LHS anchor it makes a brilliant line (Hint use dyneema if possible to extend the trees and copious rope protection on the pillar). One of the highest of any here and also the scene of a few rope swings (some without traditional harnesses).",
+	NULL,
+	"Southern",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"2x U bolts hidden at foot level.",
+	"There are numerous natural options the best being a large ‘fridge size’ boulder directly behind the bolts.",
+	"Use a series of trees (4 is best) and extend them roughly 10m-15m forward using the ‘tipper dipper’ boulder as an A-Frame. Please do NOT anchor only off the boulder.",
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Lassie’s Wall / Big Zawn";
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 3,
+	"Close Shave",
+	30,
+	45,
+	1,
+	"Chen, Axel and Levi",
+	"2017",
+	"Alex Webber",
+	"2017",
+	NULL,
+	NULL,
+	"The snapped anchor tree is a testament to how fragile the timber in the area is (if you look around it's not the only one that's fallen over recently).",
+	NULL,
+	"Northern",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"Equalise a few trees far back from the edge and use the snapped stump as an A-Frame. This snapped tree was used for the first few rigs as the anchor, before it broke!",
+	"As for main (use rope pro for the backup webbing near the anchor)",
+	"3 U bolts in the back of the tallish boulder (at eye level)",
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Lassie’s Wall / Big Zawn";
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"Starburst",
+	30,
+	20,
+	2,
+	"Chen and Levi",
+	"2018",
+	NULL,
+	NULL,
+	"Best if your drop a line down the rock face to get to the middle island. Then for getting out TRS back up the line you dropped down.",
+	NULL,
+	"Beaut little line from White Stack cliff to the island of rock 30m away. The access track down to the mainland anchor skirts a steep and exposed section of cliff, falling off or breaking a hand hold is a very real possibility, not the ideal area to bring someone uncomfortable with cliffs, consider putting in a static rope safety line, 20-30m static should do it. Also an additional 20m of rope is required to access the base of cliffs in order to scramble up the island. ",
+	NULL,
+	"Southern",
+	NULL,
+	NULL,
+	NULL,
+	NULL, 
+	"2x U bolts with an inconvenient 3-5m no fall zone in front of them",
+	"As for main",
+	"2x U bolts. Use a BD #5 cam to pull the masterpoint down to avoid rubbing (bolts are close together and about 6m back from the edge)",
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "White Stack Area";
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 2, 
+	"Bendy Wendy",
+	55,
+	40,
+	2,
+	"Levi, Simon, Drew",
+	"01/02/2019",
+	"Levi and Drew",
+	"01/02/2019",
+	"Best if your drop a line down the rock face to get to the middle island. Then for getting out TRS back up the line you dropped down.",
+	"The northern end anchor is questionable, make sure to give it a good close inspection.",
+	"A great addition to the area, all natural and stunningly obvious.",
+	"Rap down the cliff with one end of the line, walk over to the other side, attach it to a rope and have the team pull it up.",
+	"Southern",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"Wrap large pillar at very top of White Stack area (8-12m of spanset?)",
+	"As for main",
+	"Wrap boulders atop the ridgeline that separates Lassies from white stack and use a dodgy but obvious tree to redirect the anchor 6-8m down and level.",
+	"As for main.",
+	id FROM GuideAreas
+	WHERE guideAreaName = "White Stack Area";

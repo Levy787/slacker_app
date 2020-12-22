@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:slacker/screens/guide_screen.dart';
 
 class DropdownContainer extends StatefulWidget {
   final List<String> children;
@@ -33,7 +34,11 @@ class _DropdownContainerState extends State<DropdownContainer> {
       returnChildren.add(
         GestureDetector(
           onTap: () {
-            print(child);
+            Navigator.pushNamed(
+              context,
+              GuideScreen.id,
+              arguments: {'guideName': child},
+            );
           },
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
