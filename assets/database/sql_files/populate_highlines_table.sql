@@ -1,5 +1,5 @@
 /*
-INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
 	SELECT highlineNumber,
 	highlineName, 
 	length, 
@@ -14,14 +14,14 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	description, 
 	tagging, 
 	tensionEnd, 
-	gpsLatTensionEnd REAL,
-	gpsLonStaticEnd REAL,
-	gpsLatTensionEnd REAL,
-	gpsLonStaticEnd REAL,
+	gpsLatTensionEnd,
+	gpsLonStaticEnd,
+	gpsLatTensionEnd,
+	gpsLonStaticEnd ,
 	tensionEndMainAnchor, 
 	tensionEndBackupAnchor, 
-	staticEndBackupAnchor, 
-	staticEndMainAnchor,
+	staticEndMainAnchor, 
+	staticEndBackupAnchor,
 	id FROM GuideAreas
 	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
 */
@@ -34,7 +34,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	20,
 	3,
 	"Simon Young, Levi Quilliam, Rye Stellard, Drew Abernathy, Sienna DeAngils, Will DeAngils",
-	"March 29th 2019",
+	"29/03/2019",
 	"Levi Quilliam, Simon Young, Rye Stellard",
 	"March 29th 2019",
 	NULL,
@@ -243,3 +243,31 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main.",
 	id FROM GuideAreas
 	WHERE guideAreaName = "White Stack Area";
+	
+/* Cataract Gorge */
+	
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"BOB", 
+	56, 
+	16, 
+	0, 
+	"Daniel Hoi Shun Ng", 
+	"01/01/2015", 
+	"Daniel Hoi Shun Ng",
+	"01/02/2015", 
+	NULL, 
+	"As the line crosses about 1m overhead of one of the main gorge walking tracks on the east side it is advisable to ensure public safety is carefully considered whilst rigging and walking.", 
+	"Easy rigging on this fully bolted highline with ease of line crossing by using the suspension bridge right next to this highline. Daniel brought sport climbing to Cataract Gorge in the 1980’s and has been a contributor to the climbing scene in the gorge for a number of years since the first bolted sport route. He opened the eyes to the potential for fun lines up previously unprotected aretes and blank faces.Now Daniel has also brought the first established highline to the gorge in 2015. This line is remarkably easy to rig and will become a highline that can be rigged on the regular by any slackers passing through.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"4 x 8mm thru expansion bolts", 
+	"1 x 8mm thru expansion bolt & tree", 
+	"3 x 8mm thru expansion bolts", 
+	"2 x 8mm thru expansion bolts",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Cataract Gorge";
