@@ -405,4 +405,110 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main",
 	id FROM GuideAreas
 	WHERE guideAreaName = "TNicholas' Needle";
+
+-- NORTH WEST TASMANIA
+-- Cradle Mountain - Lake St Clair National Park (Mt Geryon and The Acropolis)
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 1,
+	"The Book of Laughter and Forgetting", 
+	43, 
+	100, 
+	3, 
+	"Stepan Novikov, Alex Bog, Kamil Sustak and Simmon Madden", 
+	"01/01/2016", 
+	"Stepan Novikov", 
+	NULL, 
+	NULL, 
+	NULL, 
+	"The first line on Mt Geryon and a proper achievement for the time. No beta, No sussing missions, onsight alpine highlining. 500m+ exposure.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL ,
+	"North - Huge block. Roughly 7-8m to sling (dyneema works). Bring lots of rope pro!", 
+	"As for main", 
+	"South - Foresight. 9m of material to wrap the summit (double it for a backup) + rope pro.", 
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Mt Geryon and The Acropolis";
 	
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 2,
+	"Savour The Flavour", 
+	20, 
+	60, 
+	4, 
+	"Chris Wallace, Max Silver, James Short and additional support from 9 others", 
+	NULL, 
+	"Chris Wallace, Max Silver, James Short, Brendon Plaza, Ian Bool, Max Lee-Abbott, Brad Graham, Toeknee Sterai, Thom May", 
+	NULL, 
+	"The easiest way to rig is probably to follow option 1 in the access section and have a team climb the foresight. If the group are strong climbers, doing the geryon traverse is probably cleaner.", 
+	NULL, 
+	"Maybe the best of the bunch and also the most challenging to rig. As far as short highlines go, this is probably the best in Australia, the 400m exposure is just all time.", 
+	"A 20m tagline throw is required to link this (difficult in the wind) alternatively if the access to the south summit is via climbing, trail a tagline.", 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"North - Foresight. Wrap the summit blocks using a bowline hitch to enable the line to be level. 9m of rope required (double it for backup) and a #2-3 Cam to make sure the wrap doesn’t slip off", 
+	"As for main", 
+	"South - From the south geryon tower, Rap / Scramble (very exposed grade 12) down to level with the foresight (20m of rope required). Anchor off two ideal horns of rock on the east side of the mountain. 8m of material to girth hitch both and tie a BFK.", 
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Mt Geryon and The Acropolis";
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 3,
+	"Keep Calm and Geryon", 
+	63, 
+	120, 
+	4, 
+	"Max Silver, James Short, Garrison Rowland, Preston Bruce and Andrew Craig", 
+	"01/01/2018", 
+	"Garrison Rowland, Andrew Craig", 
+	NULL, 
+	NULL, 
+	NULL, 
+	"The king line of the area and historically a coveted prize. Originally the goal of the 2016 russian expedition however when it was discovered to be too long “TBLF” was rigged instead. The following year an American team attempted it and on finding the climbing traverse too sketchy also rigged “TBLF”. One year later they returned again, this time with James Short and re-attempted the rig by avoiding the traverse. The team split into two and ascended either summit of geryon (the prefered method) and successfully pulled it off.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	"North - Wrap the ‘tunnel of love’ using about 15m of static or dyneema. More points can be used for stability (these are smaller boulders all around the area, 4m of material per boulder should be enough to incorporate them). Bring lots of rope pro (at least 10 pieces minimum)", 
+	"As for main", 
+	"South - A few different options here. Either scorpion the huge horizontal block (a little sketch) or sling a ‘locked in’ block that is slightly higher but requires some horizontal stabilization. This second option uses 6m for main (6m more for backup) and about 15-20m of cord for stabilizers. Once again, Lots of rope pro required.", 
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Mt Geryon and The Acropolis";
+
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 4,
+	"Sloopy Dumper Number Something", 
+	40, 
+	200, 
+	0, 
+	"Max Silver, Garrison Rowland, Preston Bruce and Andrew Craig", 
+	"01/01/2017", 
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL, 
+	"The ‘hidden’ V groove a few hundred meters away from camp up on the ridge.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL, 
+	NULL, 
+	NULL, 
+	NULL,
+	id FROM GuideAreas
+	WHERE guideAreaName = "Mt Geryon and The Acropolis";
