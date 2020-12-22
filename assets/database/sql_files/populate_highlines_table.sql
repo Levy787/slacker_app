@@ -271,3 +271,29 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"2 x 8mm thru expansion bolts",
 	id FROM GuideAreas
 	WHERE guideAreaName = "Cataract Gorge";
+	
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+	SELECT 2,
+	"Danny", 
+	80, 
+	50, 
+	0, 
+	"James Short, Joseph Huard, Gui Lopes, Daniel Hoi Shung Ng", 
+	"01/01/2015", 
+	"Joseph Huard", 
+	"01/02/2015", 
+	NULL, 
+	"Edge protection is required for these blocks with a few sharp contours to protect. Both sides are reasonably dangerous to access and set up rigging. Also beware of loose rocks that could dislodge and trundle down the hill towards walkers and other user groups. Ensure care is taken to retain access to the gorge.", 
+	"Having both highlines rigged at once is magical. A line originally spotted and visioned by Daniel Hoi Shung Ng, he had mentioned it to the SHF team who subsequently came and located/ established the line. Daniel provided his Spider Silk webbing to rig the highline and Joseph sent it onsight. Daniel Hoi Shung Ng passed away in December of 2015 in a tragic accident and will be remembered greatly for his efforts in Hong Kong/ China and his contributions to establishing some of the most classic sport climbs in Cataract gorge. He will be forever remembered by this line above his good friend Bob’.", 
+	NULL, 
+	NULL, 
+	NULL,
+	NULL,
+	NULL,
+	NULL ,
+	"9m girth around obvious blade/ block level with the lookout railing (note* there are two blocks however one is obviously more secure upon inspection)", 
+	"As for main", 
+	"10m girth around obvious block high up on the gorge wall, difficult to position the slings", 
+	"As for main",
+	id FROM GuideAreas
+	WHERE guideAreaName = "Cataract Gorge";
