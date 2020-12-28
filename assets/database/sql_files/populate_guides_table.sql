@@ -39,13 +39,17 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	id FROM Areas 
 	WHERE areaName='North Esk';
 
-INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
-	SELECT 'Whitewater Wall', 
-	'', 
-	'',
-	NULL,
-	NULL,
-	NULL,	
+INSERT INTO Guides (guideName, description, approach, approachFromHobart, approachFromLaunceston, camping, amenities, warning, gpsLat, gpsLon, parentID)
+	SELECT "Whitewater Wall", 
+	"Tassies answer to the question “Where can I camp, highline, climb and swim all in one spot?” Beautiful granite formations drop directly into the sea while orange, red and yellow lichen paint themselves onto the rounded boulders. On a typical day here you can expect sunshine, ambient waves and some creative rigging. Please do not place additional bolts without community consultation. This area has been a hub for climbing over the last 50 years and is rich with history and tradition. With hundreds of routes packed into such a small area it may be a surprise to see so few bolts. The ethics have been clear and should remain so for highlining. It is possible to rig just about anything here and with such a short walk in and stable weather there is no excuse not to take extra time to equalise a few more trees or carry a few more spansets for that boulder wrap.", 
+	"From the entrance of Freycinet National Park, take the signage towards the lighthouse on Cape Tourville Rd. About 500m before the lighthouse a small dirt road with large speed humps turns left with signs saying “4WD ONLY” and “Access to Bluestone Bay” Follow this track for 2.5km to Bluestone Bay taking the right turn to Whitewater Wall Campground just before the tack heads steeply downhill to the small bay. The 4WD track although bumpy can be navigated by 2WD easily ONLY if you have sufficient clearance. The first hump on the track is one of the biggest.",
+	"head north-east. Sorrel (30min from hobart) is the last major area where you can expect to buy cheap food or alcohol. Freycient is 1h 45min north of here. There are a couple taps in Coles Bay however these are from tank water and prone to runout, fill up as much water as you can in Sorrel.",
+	"head south-east. As for the above directions Launceston is the last major town and all food/water must be bought from here.",
+	"The camping at Whitewater Wall is free however it is due to the generosity and hard work of climbers over many years, please respect this place and do not leave any food waste or rubbish in the bush. Take note of all signage and allow other campers a full night's rest especially when it is busy. Mobile phone signals are poor at best. Expect to receive some messages (The RHS of tipper dipper and back up the 4WD track are best) but do not rely on the ability to send anything out.",
+	"Amenities at the Whitewater Wall include a longdrop toilet which is generally stocked with toilet paper (it may be worth brining your own just in case). Apart from that there are a few benches and tables for sitting and eating at. There is no drinking water nearby.",
+	"Some access to the anchors has extremely loose ground and rocks, it is reccomended you avoid trying to scale the gully's eventhough it may not 'look to bad'",
+	-42.104149,
+	148.340346,
 	id FROM Areas 
 	WHERE areaName='Freycinet';
 	

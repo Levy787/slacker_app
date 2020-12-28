@@ -1,55 +1,52 @@
 CREATE TABLE Countries (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	countryId INTEGER PRIMARY KEY AUTOINCREMENT,
 	countryName TEXT NOT NULL,
 	briefDescription TEXT
 );
 
 CREATE TABLE States (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	stateId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
 	stateName TEXT NOT NULL,
 	briefDescription TEXT
 );
 
 CREATE TABLE Regions (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	regionId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
 	regionName TEXT NOT NULL,
 	briefDescription TEXT
 );
 
 CREATE TABLE Areas (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	areaId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
 	areaName TEXT NOT NULL,
 	briefDescription TEXT
 );
 
 CREATE TABLE Guides (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	guideId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
 	guideName TEXT NOT NULL,
 	description BLOB,
 	approach BLOB,
 	approachFromHobart BLOB,
 	approachFromLaunceston BLOB,
+	camping BLOB, 
 	amenities BLOB,
-	tagging BLOB,
 	warning BLOB,
 	gpsLat REAL,
 	gpsLon REAL
 );
 
 CREATE TABLE GuideAreas (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	guideAreaId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
 	guideAreaName TEXT NOT NULL,
 	description BLOB,
 	approach BLOB,
-	approachFromHobart BLOB,
-	approachFromLaunceston BLOB,
 	climbingBeta BLOB,
-	amenities BLOB,
 	tagging BLOB,
 	warning BLOB,
 	gpsLat REAL,
@@ -57,15 +54,13 @@ CREATE TABLE GuideAreas (
 );
 
 CREATE TABLE Highlines (
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	highlineId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
 	highlineNumber INTEGER,
 	highlineName TEXT NOT NULL,
 	length INTEGER,
 	height INTEGER,
 	stars INTEGER,
-	gpsLat REAL,
-	gpsLon REAL,
 	whoEstablished BLOB,
 	whenEstablished BLOB,
 	whoFA BLOB,
@@ -75,6 +70,10 @@ CREATE TABLE Highlines (
 	description BLOB,
 	tagging BLOB,
 	tensionEnd TEXT,
+	gpsLatTensionEnd REAL,
+	gpsLonTensionEnd REAL,
+	gpsLatStaticEnd REAL,
+	gpsLonStaticEnd REAL,
 	tensionEndMainAnchor TEXT,
 	tensionEndBackupAnchor TEXT,
 	staticEndMainAnchor TEXT,
@@ -82,15 +81,13 @@ CREATE TABLE Highlines (
 );
 
 CREATE TABLE Midlines(
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	midlineId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
-	highlineNumber INTEGER,
-	highlineName TEXT NOT NULL,
+	midlineNumber INTEGER,
+	midlineName TEXT NOT NULL,
 	length INTEGER,
 	height INTEGER,
 	stars INTEGER,
-	gpsLat REAL,
-	gpsLon REAL,
 	whoEstablished BLOB,
 	whenEstablished BLOB,
 	whoFA BLOB,
@@ -100,6 +97,10 @@ CREATE TABLE Midlines(
 	description BLOB,
 	tagging BLOB,
 	tensionEnd TEXT,
+	gpsLatTensionEnd REAL,
+	gpsLonTensionEnd REAL,
+	gpsLatStaticEnd REAL,
+	gpsLonStaticEnd REAL,
 	tensionEndMainAnchor TEXT,
 	tensionEndBackupAnchor TEXT,
 	staticEndMainAnchor TEXT,
@@ -107,15 +108,13 @@ CREATE TABLE Midlines(
 );
 
 CREATE TABLE Waterlines(
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	waterlineId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
-	highlineNumber INTEGER,
-	highlineName TEXT NOT NULL,
+	waterlineNumber INTEGER,
+	waterlineName TEXT NOT NULL,
 	length INTEGER,
 	height INTEGER,
 	stars INTEGER,
-	gpsLat REAL,
-	gpsLon REAL,
 	whoEstablished BLOB,
 	whenEstablished BLOB,
 	whoFA BLOB,
@@ -125,6 +124,10 @@ CREATE TABLE Waterlines(
 	description BLOB,
 	tagging BLOB,
 	tensionEnd TEXT,
+	gpsLatTensionEnd REAL,
+	gpsLonTensionEnd REAL,
+	gpsLatStaticEnd REAL,
+	gpsLonStaticEnd REAL,
 	tensionEndMainAnchor TEXT,
 	tensionEndBackupAnchor TEXT,
 	staticEndMainAnchor TEXT,
@@ -132,26 +135,20 @@ CREATE TABLE Waterlines(
 );
 
 CREATE TABLE Parklines(
-	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	parklineId INTEGER PRIMARY KEY AUTOINCREMENT,
 	parentID INTEGER NOT NULL,
-	highlineNumber INTEGER,
-	highlineName TEXT NOT NULL,
+	parklineNumber INTEGER,
+	parklineName TEXT NOT NULL,
 	length INTEGER,
 	height INTEGER,
 	stars INTEGER,
-	gpsLat REAL,
-	gpsLon REAL,
-	whoEstablished BLOB,
-	whenEstablished BLOB,
-	whoFA BLOB,
-	whenFA BLOB,
-	climbingBeta BLOB,
 	warnings BLOB,
 	description BLOB,
-	tagging BLOB,
 	tensionEnd TEXT,
+	gpsLatTensionEnd REAL,
+	gpsLonTensionEnd REAL,
+	gpsLatStaticEnd REAL,
+	gpsLonStaticEnd REAL,
 	tensionEndMainAnchor TEXT,
-	tensionEndBackupAnchor TEXT,
-	staticEndMainAnchor TEXT,
-	staticEndBackupAnchor TEXT
+	staticEndMainAnchor TEXT
 );
