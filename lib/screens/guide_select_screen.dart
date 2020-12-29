@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:slacker/classes/guide_select_helper.dart';
+import 'package:slacker/classes/model_classes/country_class.dart';
+import 'package:slacker/classes/model_classes/state_class.dart';
 import 'package:slacker/classes/highline_db_provider.dart';
 import 'package:slacker/widgets/app_bars/guide_select_tab_app_bar.dart';
+
+//TODO: Adjust screen to handle new JSON
 
 class GuideSelectScreen extends StatefulWidget {
   static const String id = 'guide_select_screen';
 
-  final Map<String, Map<String, Map<String, List<String>>>> statesJSON;
-  final HighlineDbProvider db;
+  final Country country;
 
-  GuideSelectScreen({this.statesJSON, this.db});
+  GuideSelectScreen({this.country});
 
   @override
   _GuideSelectScreenState createState() => _GuideSelectScreenState();
@@ -25,7 +28,7 @@ class _GuideSelectScreenState extends State<GuideSelectScreen> {
   void initState() {
     focusNode = FocusNode();
     focusNode.addListener(onFocusChanged);
-    stateTabs = widget.statesJSON.keys.toList();
+    stateTabs = widget.country.states.map((state) => state.stateName).toList();
     super.initState();
   }
 
@@ -82,11 +85,12 @@ class _GuideSelectScreenState extends State<GuideSelectScreen> {
               ];
             },
             body: TabBarView(
-              children: stateTabs.map((String name) {
+              //TODO: Need to set this to take the country input
+              children: widget.country.states.map((States state) {
                 return Builder(
                   builder: (BuildContext context) {
                     return CustomScrollView(
-                      key: PageStorageKey<String>(name),
+                      key: PageStorageKey<String>(state.stateName),
                       slivers: <Widget>[
                         SliverOverlapInjector(
                           handle:
@@ -96,24 +100,16 @@ class _GuideSelectScreenState extends State<GuideSelectScreen> {
                         SliverList(
                           delegate: SliverChildBuilderDelegate(
                             (BuildContext context, int index) {
-                              if (widget.statesJSON[name].length == 0) {
-                                return ListTile(
-                                  title: Text('Comming Soon!'),
-                                );
-                              } else {
-                                List<Widget> stateDetailList =
-                                    GuideSelectHelper.generateStateGuidePage(
-                                        stateData: widget.statesJSON[name],
-                                        stateName: name);
-                                return stateDetailList[index];
-                              }
+                              List<Widget> stateDetailList =
+                                  GuideSelectHelper.generateStateGuidePage(
+                                state: state,
+                              );
+                              return stateDetailList[index];
                             },
-                            childCount: widget.statesJSON[name].length == 0
-                                ? 1
-                                : GuideSelectHelper.generateStateGuidePage(
-                                        stateData: widget.statesJSON[name],
-                                        stateName: name)
-                                    .length,
+                            childCount:
+                                GuideSelectHelper.generateStateGuidePage(
+                              state: state,
+                            ).length,
                           ),
                         ),
                       ],
@@ -129,8 +125,20 @@ class _GuideSelectScreenState extends State<GuideSelectScreen> {
           unselectedItemColor: Colors.black,
           showUnselectedLabels: true,
           currentIndex: 1,
-          onTap: (index) {
-            print(widget.statesJSON);
+          onTap: (index) async {
+            Country.getCountry('Australia', ['countryName']);
+            /*List<States> states = await States.getStatesFromCountry(
+                'Australia', ['stateName', 'id']);
+            for (var state in states) {
+              await state.addRegions(['regionName']);
+            }
+            for (var state in states) {
+              print('state name = ${state.stateName}');
+              for (var region in state.regions) {
+                print('region name = ${region.regionName}');
+              }
+            }*/
+            //widget.db.getGuideSelectScreenData('Australia');
           },
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.rss_feed), label: 'Feed'),

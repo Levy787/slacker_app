@@ -31,8 +31,7 @@ class RouteProvider {
     return MaterialPageRoute(
       builder: (context) {
         return GuideSelectScreen(
-          db: arguments['HighlineDbProvider'],
-          statesJSON: arguments['states'],
+          country: arguments['country'],
         );
       },
     );

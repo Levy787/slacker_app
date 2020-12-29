@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
 //import 'package:path_provider/path_provider.dart';
 import 'dart:io';
@@ -5,6 +7,7 @@ import 'package:path/path.dart';
 import 'dart:async';
 import 'dart:typed_data';
 import 'package:flutter/services.dart';
+import 'package:slacker/globals.dart' as globals;
 
 //TODO: Maybe implement a typedef for the selectChildrenOfParent
 
@@ -39,6 +42,269 @@ class HighlineDbProvider {
       db.setVersion(currentDatabaseVersion);
     } else {
       print('Database is fine');
+    }
+    globals.db = db;
+  }
+
+  Future<Map<String, dynamic>> getGuideSelectScreenData(
+      String countryName) async {
+    Map<String, dynamic> json = {
+      countryName: {'states': {}}
+    };
+
+    ///The flag variable is used to skip all loops if there is no regions etc.
+    ///When flag is set to true, all inner loops will not be run and the most
+    ///outer loop will run the next iteration.
+    bool flag;
+
+    for (var countryName in json.keys) {
+      flag = false;
+      //Add States to Country
+      flag = await getStatesAndAddToJson(json: json, countryName: countryName);
+
+      if (flag == false) {
+        for (var stateName in json[countryName]['states'].keys) {
+          //Add Regions to State
+          flag = await getRegionsAndAddToJson(
+            json: json,
+            countryName: countryName,
+            stateName: stateName,
+          );
+          if (flag == false) {
+            //Add Areas to Region
+            for (var regionName
+                in json[countryName]['states'][stateName]['regions'].keys) {
+              flag = await getAreasAndAddToJson(
+                json: json,
+                countryName: countryName,
+                stateName: stateName,
+                regionName: regionName,
+              );
+              if (flag == false) {
+                //Add Guides to Area
+                for (var areaName in json[countryName]['states'][stateName]
+                        ['regions'][regionName]['areas']
+                    .keys) {
+                  await getGuidesAndAddToJson(
+                    json: json,
+                    countryName: countryName,
+                    stateName: stateName,
+                    regionName: regionName,
+                    areaName: areaName,
+                  );
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    print(json['Australia']['states'].keys);
+    return json;
+  }
+
+  Future<int> getParentId(
+      String parentTableName, String columnMatch, String nameMatch) async {
+    int parentId;
+
+    await db
+        .query(
+          parentTableName,
+          columns: ['id'],
+          where: '$columnMatch = ?',
+          whereArgs: [nameMatch],
+        )
+        .then(
+          (response) => parentId = response[0]['id'],
+        );
+    return parentId;
+  }
+
+  Future<List<String>> getChildrenOfParent(
+      String childTable, String returnColumns, int parentId) async {
+    List<String> children = [];
+    await db
+        .query(
+          childTable,
+          columns: [returnColumns],
+          where: 'parentId = ?',
+          whereArgs: [parentId],
+        )
+        .then(
+          (response) => response.forEach(
+            (child) {
+              children.add(
+                child[returnColumns],
+              );
+            },
+          ),
+        );
+    return children;
+  }
+
+  Map<String, dynamic> addStatesToCountryJson({
+    Map json,
+    List states,
+    String countryName,
+  }) {
+    states.forEach(
+      (state) {
+        json[countryName]['states'][state] = {};
+      },
+    );
+    return json;
+  }
+
+  Map<String, dynamic> addRegionsToStateJson({
+    Map json,
+    List regions,
+    String countryName,
+    String stateName,
+  }) {
+    regions.forEach(
+      (region) {
+        json[countryName]['states'][stateName]['regions'][region] = {};
+      },
+    );
+    return json;
+  }
+
+  Map<String, dynamic> addAreasToRegionJson({
+    Map json,
+    List areas,
+    String countryName,
+    String stateName,
+    String regionName,
+    String areaName,
+  }) {
+    areas.forEach(
+      (area) {
+        json[countryName]['states'][stateName]['regions'][regionName]['areas']
+            [area] = {};
+      },
+    );
+    return json;
+  }
+
+  Map<String, dynamic> addGuidesToAreaJson({
+    Map json,
+    List guides,
+    String countryName,
+    String stateName,
+    String regionName,
+    String areaName,
+  }) {
+    guides.forEach(
+      (guide) {
+        json[countryName]['states'][stateName]['regions'][regionName]['areas']
+            [areaName]['guides'][guide] = {};
+      },
+    );
+    return json;
+  }
+
+  Future<bool> getStatesAndAddToJson({
+    Map json,
+    String countryName,
+  }) async {
+    int parentId;
+    List<String> statesList = [];
+
+    parentId = await getParentId('Countries', 'countryName', '$countryName');
+    statesList = await getChildrenOfParent('States', 'stateName', parentId);
+    if (statesList.length >= 1) {
+      json = addStatesToCountryJson(
+        json: json,
+        states: statesList,
+        countryName: countryName,
+      );
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future<bool> getRegionsAndAddToJson({
+    Map json,
+    String countryName,
+    String stateName,
+  }) async {
+    List<String> regionsList = [];
+    int parentId;
+
+    parentId = await getParentId('States', 'stateName', '$stateName');
+    regionsList = await getChildrenOfParent('Regions', 'regionName', parentId);
+    if (regionsList.length >= 1) {
+      json[countryName]['states'][stateName]['regions'] = {};
+      json = addRegionsToStateJson(
+        json: json,
+        regions: regionsList,
+        countryName: countryName,
+        stateName: stateName,
+      );
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future<bool> getAreasAndAddToJson({
+    Map json,
+    String countryName,
+    String stateName,
+    String regionName,
+  }) async {
+    List<String> areasList = [];
+    int parentId;
+
+    parentId = await getParentId('Regions', 'regionName', '$regionName');
+
+    areasList = await getChildrenOfParent('Areas', 'areaName', parentId);
+
+    if (areasList.length >= 1) {
+      json[countryName]['states'][stateName]['regions'][regionName]
+          ['areas'] = {};
+      json = addAreasToRegionJson(
+        json: json,
+        areas: areasList,
+        countryName: countryName,
+        stateName: stateName,
+        regionName: regionName,
+      );
+      return false;
+    } else {
+      return true;
+    }
+  }
+
+  Future<bool> getGuidesAndAddToJson({
+    Map json,
+    String countryName,
+    String stateName,
+    String regionName,
+    String areaName,
+  }) async {
+    List<String> guidesList = [];
+    int parentId;
+
+    parentId = await getParentId('Areas', 'areaName', '$areaName');
+
+    guidesList = await getChildrenOfParent('Guides', 'guideName', parentId);
+
+    if (guidesList.length >= 1) {
+      json[countryName]['states'][stateName]['regions'][regionName]['areas']
+          [areaName]['guides'] = {};
+      json = addGuidesToAreaJson(
+        json: json,
+        guides: guidesList,
+        countryName: countryName,
+        stateName: stateName,
+        regionName: regionName,
+        areaName: areaName,
+      );
+      return false;
+    } else {
+      return true;
     }
   }
 
@@ -155,59 +421,6 @@ class HighlineDbProvider {
     }
     return stateDetails;
   }
-
-/*
-  Future<Map<String, Map<String, Map<String, List<String>>>>> getGuideData(
-      String guide) async {
-    Map<String, Map<String, Map<String, List<String>>>> stateDetails = {
-      state: {}
-    };
-
-    for (var state in stateDetails.keys) {
-      await getRegionsInState(state).then(
-        (regions) {
-          regions.forEach(
-            (region) {
-              stateDetails[state][region] = {};
-            },
-          );
-        },
-      );
-    }
-
-    //Add Areas to Region
-    for (var state in stateDetails.keys) {
-      for (var region in stateDetails[state].keys) {
-        await getAreasInRegion(region).then(
-          (areas) {
-            areas.forEach(
-              (area) {
-                stateDetails[state][region][area] = [];
-              },
-            );
-          },
-        );
-      }
-    }
-
-    //Add Guides to Area
-    for (var state in stateDetails.keys) {
-      for (var region in stateDetails[state].keys) {
-        for (var area in stateDetails[state][region].keys) {
-          await getGuidesInArea(area).then(
-            (guides) {
-              guides.forEach(
-                (guide) {
-                  stateDetails[state][region][area].add(guide);
-                },
-              );
-            },
-          );
-        }
-      }
-    }
-    return stateDetails;
-  }*/
 
   Future<List<dynamic>> getStatesInCountry(String country) async {
     return await getChildrenItemsFromParent(
