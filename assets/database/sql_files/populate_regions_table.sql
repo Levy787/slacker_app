@@ -1,19 +1,19 @@
 INSERT INTO Regions (regionName, parentID)
-	SELECT 'North East', id FROM States 
+	SELECT 'North East', stateId FROM States 
 	WHERE stateName='Tasmania';
 
 INSERT INTO Regions (regionName, parentID)
-	SELECT 'North West', id FROM States 
+	SELECT 'North West', stateId FROM States 
 	WHERE stateName='Tasmania';
 	
 INSERT INTO Regions (regionName, parentID)
-	SELECT 'South East', id FROM States 
+	SELECT 'South East', stateId FROM States 
 	WHERE stateName='Tasmania';
 	
 INSERT INTO Regions (regionName, parentID)
-	SELECT 'South West', id FROM States 
+	SELECT 'South West', stateId FROM States 
 	WHERE stateName='Tasmania';
 	
 INSERT INTO Regions (regionName, parentID)
-	SELECT 'Islands', id FROM States 
+	SELECT 'Islands', stateId FROM States 
 	WHERE stateName='Tasmania';

@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:slacker/screens/guide_screen.dart';
+import 'package:slacker/screens/loading_screen.dart';
 
 class DropdownContainer extends StatefulWidget {
   final List<String> children;
@@ -36,8 +37,11 @@ class _DropdownContainerState extends State<DropdownContainer> {
           onTap: () {
             Navigator.pushNamed(
               context,
-              GuideScreen.id,
-              arguments: {'guideName': child},
+              LoadingScreen.id,
+              arguments: {
+                'route': GuideScreen.id,
+                'arguments': {'guideName': child}
+              },
             );
           },
           child: Container(

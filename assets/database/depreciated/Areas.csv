@@ -1,0 +1,15 @@
+﻿AreaID,RegionID,AreaName,BriefDescription,intro
+1,2,Launceston,NULL,NULL
+2,2,Ben Lomond Plateau,NULL,NULL
+3,3,Freycinet,NULL,NULL
+4,1,Cradle Mountain - Lake St Clair National Park,NULL,NULL
+5,1,Devils Gullet,NULL,NULL
+6,1,Tarkine and the North West,NULL,NULL
+7,1,Frenchmans Cap,NULL,NULL
+8,1,Tyndall Ranges,NULL,NULL
+9,4,Hobart,NULL,NULL
+10,4,Tasman Peninsula,NULL,NULL
+11,5,Mt Field National Park,NULL,NULL
+12,5,Lonnavale,NULL,NULL
+13,5,Federation Peak,NULL,NULL
+14,5,Strathgordon Dam,NULL,NULL

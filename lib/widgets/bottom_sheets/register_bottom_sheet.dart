@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:slacker/screens/explore_screen.dart';
+import 'package:slacker/screens/guide_select_screen.dart';
 import 'package:slacker/screens/loading_screen.dart';
 import 'package:slacker/widgets/buttons/rounded_button.dart';
 import 'package:slacker/widgets/form_widgets/form_hyper_text.dart';
@@ -71,7 +73,14 @@ class RegisterBottomSheet extends StatelessWidget {
                   text: 'Register',
                   onPressed: () {
                     print('Register');
-                    Navigator.popAndPushNamed(context, LoadingScreen.id);
+                    Navigator.popAndPushNamed(
+                      context,
+                      LoadingScreen.id,
+                      arguments: {
+                        'route': ExploreScreen.id,
+                        'arguments': {'state': 'Tasmania'}
+                      },
+                    );
                   },
                   backgroundColor: kFormThemeColor,
                   borderWidth: 0.0,

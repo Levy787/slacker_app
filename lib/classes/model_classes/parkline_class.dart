@@ -1,3 +1,4 @@
+/*
 import 'package:slacker/globals.dart' as globals;
 
 class Parkline {
@@ -80,8 +81,8 @@ class Parkline {
   ) async {
     List<Parkline> returnParklines = [];
 
-    int parentId =
-        await globals.getParentId('GuideAreas', 'guideAreaName', guideArea);
+    int parentId = await globals.getParentId(
+        'GuideSections', 'GuideSectionID', 'guideSectionName', guideArea);
     await globals
         .getChildrenOfParent('Parkline', returnColumns, parentId)
         .then((response) async {
@@ -111,3 +112,4 @@ class Parkline {
     return returnParklines;
   }
 }
+*/

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:slacker/classes/guide_select_helper.dart';
 import 'package:slacker/classes/model_classes/country_class.dart';
 import 'package:slacker/classes/model_classes/state_class.dart';
-import 'package:slacker/classes/highline_db_provider.dart';
 import 'package:slacker/widgets/app_bars/guide_select_tab_app_bar.dart';
 
 //TODO: Adjust screen to handle new JSON
@@ -49,7 +48,6 @@ class _GuideSelectScreenState extends State<GuideSelectScreen> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        //Takes focus off Search Bar
         focusNode.unfocus();
       },
       child: Scaffold(
@@ -85,7 +83,6 @@ class _GuideSelectScreenState extends State<GuideSelectScreen> {
               ];
             },
             body: TabBarView(
-              //TODO: Need to set this to take the country input
               children: widget.country.states.map((States state) {
                 return Builder(
                   builder: (BuildContext context) {

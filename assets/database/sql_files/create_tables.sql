@@ -1,7 +1,7 @@
 CREATE TABLE Countries (
 	countryId INTEGER PRIMARY KEY AUTOINCREMENT,
 	countryName TEXT NOT NULL,
-	briefDescription TEXT
+	briefDescription BLOB
 );
 
 CREATE TABLE States (

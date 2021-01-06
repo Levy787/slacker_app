@@ -1,0 +1,24 @@
+﻿GuideSectionID,GuideID,GuideSectionName,GuideSectionLat,GuideSectionLon,BriefDescription,DetailedDescription,Approach,ClimbingBeta,Tagging,Warning
+1,1,Cataract Gorge,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+2,2,Jacob’s Ladder,NULL,NULL,NULL,"Weirdly for a highline location the main attraction here is not all nature. Built in… Jacob’s Ladder is an incredible engineering feat, a dirt road winding steeply up the mountainside allowing vehicular access to the plateau. The spectacle also provides an auditory experience as cars slowly make their way up the switchbacks, the gravel crunch rising and falling as pillars of dolerite block the sound waves.","The established lines here are inside a large, open and stepped gully that faces the bottom of jacob's ladder. Park at the top of the switchbacks and rock hop for 500m+ along the cliffs to the left of the road (looking downhill) until you arrive on the big amphitheatre. There will be some sections of wading though very prickly bushes between the boulders so wear long pants and bring a keen sense of route finding. ",NULL,Tagline and a good arm required ,NULL
+3,2,Flew's Flutes,NULL,NULL,NULL,"The main climbing area in ‘The Ben’. Huge hexagonal pillars rise up to 150m above the scree slope below forming continuous crack lines of incredibly uniform width. There are a couple big V gaps in the area and potential for many many more lines than listed here, all with great exposure and direct height.","Park at Carr Villa and take the summit walking track. After 500m or so turn off right and begin to boulder hop for the next 20min to gain the top of the cliffs out right. On top the going gets easier with flat grassy sections and a few scrubby prickly bush bashes. It takes roughly 1hr from the car park to the prominent V gap in the middle of the flutes. An alternative, less scrubby and shorter, but more physical approach is to take the climbers access to the base of the cliffs themselves. From here the descent gully can be used to gain to the top of the hill (total of just under an hour).",NULL,Walk and throw the tagline around the gaps fairly easily.,NULL
+4,3,Bluestone Bay,NULL,NULL,"There is potential here for a 120m ish line about 25m high, beautiful and great for training on",NULL,NULL,NULL,NULL,NULL
+5,3,Whitewater Wall,NULL,NULL,"There is potential here for a 70-80m line running parallel with the large slab of “Whitewater Wall” . It would be roughly 10m away from the wall the entire length, a bit of a weird line that might not actually go with a closer inspection.",NULL,NULL,NULL,NULL,NULL
+6,3,Beowulf / Deep Water Zawn,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+7,3,Lassie’s Wall / Big Zawn,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+8,3,White Stack Area,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+9,3,Little Bluestone Bay,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+10,4,The Underworld,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+11,5,Nicholas Needle,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+12,6,Mt Geryon and The Acropolis,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+13,7,Devils Gullet,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+14,11,Frenchmans Cap,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+15,14,Mount Wellington,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+16,16,Tinderbox,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+17,17,Cape Hauy,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+18,18,The Moai,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+19,19,Cape Pillar,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+20,21,Surrounding Clifflines,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+21,21,The Cape of Raoul,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+22,22,Waterfall Bay Lookout,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL
+23,23,Big Tree Reserve,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL

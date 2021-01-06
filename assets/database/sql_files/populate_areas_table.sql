@@ -1,59 +1,59 @@
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Launceston', id FROM Regions 
+	SELECT 'Launceston', regionId FROM Regions 
 	WHERE regionName='North East';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Ben Lomond', id FROM Regions 
+	SELECT 'Ben Lomond', regionId FROM Regions 
 	WHERE regionName='North East';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'North Esk', id FROM Regions 
+	SELECT 'North Esk', regionId FROM Regions 
 	WHERE regionName='North East';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Freycinet', id FROM Regions 
+	SELECT 'Freycinet', regionId FROM Regions 
 	WHERE regionName='North East';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Cradle Mountain - Lake St Clair National Park', id FROM Regions 
+	SELECT 'Cradle Mountain - Lake St Clair National Park', regionId FROM Regions 
 	WHERE regionName='North West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Devils Gullet', id FROM Regions 
+	SELECT 'Devils Gullet', regionId FROM Regions 
 	WHERE regionName='North West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Tarkine and the North West', id FROM Regions 
+	SELECT 'Tarkine and the North West', regionId FROM Regions 
 	WHERE regionName='North West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Frenchmans Cap', id FROM Regions 
+	SELECT 'Frenchmans Cap', regionId FROM Regions 
 	WHERE regionName='North West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Tyndall Ranges', id FROM Regions 
+	SELECT 'Tyndall Ranges', regionId FROM Regions 
 	WHERE regionName='North West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Hobart', id FROM Regions 
+	SELECT 'Hobart', regionId FROM Regions 
 	WHERE regionName='South East';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Tasman Peninsula', id FROM Regions 
+	SELECT 'Tasman Peninsula', regionId FROM Regions 
 	WHERE regionName='South East';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Mt Field National Park', id FROM Regions 
+	SELECT 'Mt Field National Park', regionId FROM Regions 
 	WHERE regionName='South West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Lonnavale', id FROM Regions 
+	SELECT 'Lonnavale', regionId FROM Regions 
 	WHERE regionName='South West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Federation Peak', id FROM Regions 
+	SELECT 'Federation Peak', regionId FROM Regions 
 	WHERE regionName='South West';
 	
 INSERT INTO Areas (areaName, parentID)
-	SELECT 'Bruny Island', id FROM Regions 
+	SELECT 'Bruny Island', regionId FROM Regions 
 	WHERE regionName='Islands';

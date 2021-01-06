@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:slacker/classes/model_classes/guide_area_class.dart';
+import 'package:slacker/classes/model_classes/guide_class.dart';
+import 'package:slacker/widgets/app_bars/sliver_image_app_bar.dart';
+import 'package:slacker/widgets/guide_scroll.dart';
 
 class GuideScreen extends StatelessWidget {
   static const String id = 'guide_screen';
-  final String guideName;
-  final guideData;
+  final Guide guide;
 
   GuideScreen({
-    this.guideName,
-    this.guideData,
+    this.guide,
   });
 
   @override
@@ -26,8 +28,34 @@ class GuideScreen extends StatelessWidget {
           },
         ),
         title: Text(
-          '$guideName Guide',
+          '${guide.guideName} Guide',
           style: TextStyle(color: Colors.black, fontSize: 20.0),
+        ),
+      ),
+      body: Scaffold(
+        body: CustomScrollView(
+          slivers: [
+            SliverAppBar(
+              elevation: 0.0,
+              pinned: false,
+              expandedHeight: 250.0,
+              collapsedHeight: 250.0,
+              automaticallyImplyLeading: false,
+              //backgroundColor: Colors.white,
+              flexibleSpace: Image.asset(
+                'assets/images/guide/whitewater_wall/whitewater_wall.jpg',
+                fit: BoxFit.fitHeight,
+                height: 250.0,
+              ),
+            ),
+            SliverList(
+              delegate: SliverChildListDelegate(
+                [
+                  //GuideScroll(guide: guide),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

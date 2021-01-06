@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:slacker/screens/explore_screen.dart';
+import 'package:slacker/screens/guide_select_screen.dart';
 import 'package:slacker/screens/loading_screen.dart';
 import 'package:slacker/widgets/bottom_sheets/register_bottom_sheet.dart';
 import 'package:slacker/widgets/form_widgets/form_input_field.dart';
@@ -71,7 +73,14 @@ class LoginBottomSheet extends StatelessWidget {
                   text: 'Sign In',
                   onPressed: () {
                     print('sign in');
-                    Navigator.popAndPushNamed(context, LoadingScreen.id);
+                    Navigator.popAndPushNamed(
+                      context,
+                      LoadingScreen.id,
+                      arguments: {
+                        'route': ExploreScreen.id,
+                        'arguments': {'state': 'Tasmania'},
+                      },
+                    );
                   }, //TODO: Firebase Signin
                   backgroundColor: kFormThemeColor,
                   textColor: Colors.white,

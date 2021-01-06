@@ -3,14 +3,14 @@ import 'package:slacker/globals.dart' as globals;
 
 class Area {
   int areaId;
-  int parentId;
+  int regionId;
   String areaName;
   String briefDescription;
   List<Guide> guides;
 
   Area({
     this.areaId,
-    this.parentId,
+    this.regionId,
     this.areaName,
     this.briefDescription,
     this.guides,
@@ -18,14 +18,14 @@ class Area {
 
   static Area createAreaInstance({
     int areaId,
-    int parentId,
+    int regionId,
     String areaName,
     String briefDescription,
     List<Guide> guides,
   }) {
     return Area(
       areaId: areaId,
-      parentId: parentId,
+      regionId: regionId,
       areaName: areaName,
       briefDescription: briefDescription,
       guides: guides,
@@ -37,17 +37,18 @@ class Area {
     List<String> returnColumns,
   ) async {
     List<Area> returnAreas = [];
-    int parentId = await globals.getParentId('Regions', 'regionName', region);
+    int parentId =
+        await globals.getParentId('Regions', 'regionId', 'regionName', region);
     await globals
-        .getChildrenOfParent('Areas', returnColumns, parentId)
+        .getChildrenOfParent('Areas', returnColumns, 'regionId', parentId)
         .then((response) async {
       for (var area in response) {
         returnAreas.add(
           Area.createAreaInstance(
-            areaName: area['areaName'],
             areaId: area['areaId'],
+            regionId: area['regionId'],
+            areaName: area['areaName'],
             briefDescription: area['briefDescription'],
-            parentId: area['parentId'],
           ),
         );
       }

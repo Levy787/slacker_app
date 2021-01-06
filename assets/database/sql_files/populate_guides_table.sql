@@ -5,7 +5,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	-41.446994,
 	147.118169,
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Launceston';
 
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -15,7 +15,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Ben Lomond';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -26,7 +26,7 @@ An alternative, less scrubby and shorter, but more physical approach is to take 
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Ben Lomond';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -36,7 +36,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='North Esk';
 
 INSERT INTO Guides (guideName, description, approach, approachFromHobart, approachFromLaunceston, camping, amenities, warning, gpsLat, gpsLon, parentID)
@@ -50,7 +50,7 @@ INSERT INTO Guides (guideName, description, approach, approachFromHobart, approa
 	"Some access to the anchors has extremely loose ground and rocks, it is reccomended you avoid trying to scale the gully's eventhough it may not 'look to bad'",
 	-42.104149,
 	148.340346,
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Freycinet';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -60,7 +60,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Freycinet';
 
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -70,7 +70,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Freycinet';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -80,7 +80,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Cradle Mountain - Lake St Clair National Park';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -90,7 +90,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Devils Gullet';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -100,7 +100,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tarkine and the North West';
 
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -110,7 +110,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tarkine and the North West';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -120,7 +120,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tarkine and the North West';
 
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -130,7 +130,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Frenchmans Cap';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -140,7 +140,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tyndall Ranges';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -150,7 +150,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Hobart';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -160,7 +160,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Hobart';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -170,7 +170,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Hobart';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -180,7 +180,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Hobart';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -190,7 +190,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tasman Peninsula';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -200,7 +200,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tasman Peninsula';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -210,7 +210,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tasman Peninsula';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -220,7 +220,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tasman Peninsula';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -230,7 +230,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tasman Peninsula';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -240,7 +240,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Tasman Peninsula';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -250,7 +250,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Mt Field National Park';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -260,7 +260,7 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Lonnavale';
 	
 INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, parentID)
@@ -270,5 +270,5 @@ INSERT INTO Guides (guideName, description, approach, warning, gpsLat, gpsLon, p
 	NULL,
 	NULL,
 	NULL,	
-	id FROM Areas 
+	areaId FROM Areas 
 	WHERE areaName='Federation Peak';

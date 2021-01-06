@@ -1,5 +1,5 @@
 INSERT INTO States (stateName, parentID)
-	SELECT 'Tasmania', id FROM Countries 
+	SELECT 'Tasmania', countryId FROM Countries 
 	WHERE countryName='Australia';
 	
 INSERT INTO States (stateName, parentID)

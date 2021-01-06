@@ -1,90 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:slacker/widgets/buttons/rounded_button.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:slacker/widgets/form_widgets/form_hyper_text.dart';
-import 'package:slacker/widgets/bottom_sheets/login_bottom_sheet.dart';
-import 'package:slacker/widgets/bottom_sheets/register_bottom_sheet.dart';
+import 'package:slacker/classes/highline_db_provider.dart';
+import 'package:slacker/classes/model_classes/state_class.dart';
+import 'package:slacker/globals.dart' as globals;
+import 'explore_screen.dart';
 
-//TODO: Add Forgot password
-//TODO: Add password eye
-//TODO: If signed in, change button to view highlines, or skip to the home page
-//TODO: Make bottomsheet see through & change color theme
+class WelcomeScreen extends StatefulWidget {
+  @override
+  _WelcomeScreenState createState() => _WelcomeScreenState();
+}
 
-const Color kButtonColors = Color(0xFFb44b5d);
+class _WelcomeScreenState extends State<WelcomeScreen> {
+  ///Seems like a really hacky way to get get to the explore page
+  ///Review later
 
-class WelcomeScreen extends StatelessWidget {
-  static const String id = 'welcome_screen';
+  @override
+  void initState() {
+    //Initialise the database them get the explore data which will then push
+    //to the explore page. Done this way to keep it all in initState
+    HighlineDbProvider().init().then((_) => getExplore('Tasmania'));
+    super.initState();
+  }
+
+  Future<void> getExplore(String stateName) async {
+    States state = await States.getState(stateName);
+    state.addRegions(['regionName', 'briefDescription']);
+    //await Future.delayed(const Duration(seconds: 5));
+    Navigator.pushNamed(
+      context,
+      ExploreScreen.id,
+      arguments: {'state': state},
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Image.asset(
-          'assets/images/landscape.png',
-          height: MediaQuery.of(context).size.height,
-          width: MediaQuery.of(context).size.width,
-          fit: BoxFit.cover,
-        ),
-        Scaffold(
-          resizeToAvoidBottomPadding: false,
-          backgroundColor: Colors.transparent,
-          body: SafeArea(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                /*Image.asset(
-                  'assets/logo.png',
-                  height: 250.0,
-                ),
-                SizedBox(
-                  width: 250.0,
-                  child: TypewriterAnimatedTextKit(
-                    onTap: () {
-                      print("Tap Event");
-                    },
-                    text: ["  Slacker"],
-                    textStyle: TextStyle(
-                      fontSize: 50.0,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xfffca815),
-                    ),
-                    textAlign: TextAlign.center,
-                    alignment: Alignment.center,
-                    totalRepeatCount: 1,
-                    speed: Duration(milliseconds: 400),
-                  ),
-                ),*/
-                RoundedButton(
-                  onPressed: () {
-                    RegisterBottomSheet.showRegisterBottomSheet(context, false);
-                  },
-                  text: 'Register',
-                  textColor: Colors.white,
-                  backgroundColor: kButtonColors, //Color(0xff1779b1),
-                ),
-                RoundedButton(
-                  onPressed: () {
-                    LoginBottomSheet.showLoginBottomSheet(context, false);
-                  },
-                  text: 'Sign In',
-                  backgroundColor: Color(0x44b44b5d), //Colors.transparent,
-                  borderWidth: 2.0,
-                  borderColor: kButtonColors, //Color(0xff1779b1),
-                  textColor:
-                      Colors.grey[100], //kButtonColors, //Color(0xff1779b1),
-                ),
-                FormHyperText(
-                  linkText: 'Use Offline',
-                  onTap: () {
-                    print('Use Offline'); //TODO: Implement Use offline
-                  },
-                  mainAxisAlignment: MainAxisAlignment.center,
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
+    return Scaffold(
+      body: Container(
+        alignment: Alignment.topCenter,
+        padding: EdgeInsets.symmetric(vertical: 150.0, horizontal: 75.0),
+        child: Image.asset('assets/images/logo_retro.png'),
+      ),
     );
   }
 }

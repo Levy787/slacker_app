@@ -4,88 +4,107 @@ import 'package:slacker/classes/model_classes/waterline_class.dart';
 import 'package:slacker/classes/model_classes/parkline_class.dart';
 import 'package:slacker/globals.dart' as globals;
 
-class GuideArea {
-  int guideAreaId;
-  int parentID;
-  String guideAreaName;
-  String description;
+class GuideSections {
+  int guideSectionId;
+  int guideId;
+  String guideSectionName;
+  String briefDescription;
+  String detailedDescription;
   String approach;
   String climbingBeta;
   String tagging;
   String warning;
-  double gpsLat;
-  double gpsLon;
+  double guideSectionLat;
+  double guideSectionLon;
   List<Highline> highlines;
-  List<Midline> midlines;
-  List<Waterline> waterlines;
-  List<Parkline> parklines;
+  //List<Midline> midlines;
+  //List<Waterline> waterlines;
+  //List<Parkline> parklines;
 
-  GuideArea({
-    this.guideAreaId,
-    this.parentID,
-    this.guideAreaName,
-    this.description,
+  GuideSections({
+    this.guideSectionId,
+    this.guideId,
+    this.guideSectionName,
+    this.briefDescription,
+    this.detailedDescription,
     this.approach,
     this.climbingBeta,
     this.tagging,
     this.warning,
-    this.gpsLat,
-    this.gpsLon,
+    this.guideSectionLat,
+    this.guideSectionLon,
     this.highlines,
-    this.midlines,
-    this.waterlines,
-    this.parklines,
+    //this.midlines,
+    //this.waterlines,
+    //this.parklines,
   });
 
-  static GuideArea createGuideAreaInstance({
-    int guideAreaId,
-    int parentID,
-    String guideAreaName,
-    String description,
+  static GuideSections createGuideAreaInstance({
+    int guideSectionId,
+    int guideId,
+    String guideSectionName,
+    String briefDescription,
+    String detailedDescription,
     String approach,
     String climbingBeta,
     String tagging,
     String warning,
-    double gpsLat,
-    double gpsLon,
+    double guideSectionLat,
+    double guideSectionLon,
+    List<Highline> highlines,
+    //List<Midline> midlines,
+    //List<Waterline> waterlines,
+    //List<Parkline> parklines,
   }) {
-    return GuideArea(
-      guideAreaId: guideAreaId,
-      parentID: parentID,
-      guideAreaName: guideAreaName,
-      description: description,
+    return GuideSections(
+      guideSectionId: guideSectionId,
+      guideId: guideId,
+      guideSectionName: guideSectionName,
+      briefDescription: briefDescription,
+      detailedDescription: detailedDescription,
       approach: approach,
       climbingBeta: climbingBeta,
       tagging: tagging,
       warning: warning,
-      gpsLat: gpsLat,
-      gpsLon: gpsLon,
+      guideSectionLat: guideSectionLat,
+      guideSectionLon: guideSectionLon,
+      highlines: highlines,
+      //midlines: midlines,
+      //waterlines: waterlines,
+      //parklines: parklines,
     );
   }
 
-  static Future<List<GuideArea>> getGuideAreasFromGuide(
+  static Future<List<GuideSections>> getGuideAreasFromGuide(
     String guide,
     List<String> returnColumns,
   ) async {
-    List<GuideArea> returnGuideAreas = [];
+    List<GuideSections> returnGuideAreas = [];
 
-    int parentId = await globals.getParentId('Guides', 'guideName', guide);
+    int parentId =
+        await globals.getParentId('Guides', 'guideId', 'guideName', guide);
     await globals
-        .getChildrenOfParent('GuideAreas', returnColumns, parentId)
+        .getChildrenOfParent(
+            'guideSections', returnColumns, 'guideId', parentId)
         .then((response) async {
-      for (var guideArea in response) {
+      for (var guideSection in response) {
         returnGuideAreas.add(
-          GuideArea.createGuideAreaInstance(
-            guideAreaId: guideArea['guideAreaId'],
-            parentID: guideArea['parentID'],
-            guideAreaName: guideArea['guideAreaName'],
-            description: guideArea['description'],
-            approach: guideArea['approach'],
-            climbingBeta: guideArea['climbingBeta'],
-            tagging: guideArea['tagging'],
-            warning: guideArea['warning'],
-            gpsLat: guideArea['gpsLat'],
-            gpsLon: guideArea['gpsLon'],
+          GuideSections.createGuideAreaInstance(
+            guideSectionId: guideSection['guideSectionId'],
+            guideId: guideSection['guideId'],
+            guideSectionName: guideSection['guideSectionName'],
+            briefDescription: guideSection['briefDescription'],
+            detailedDescription: guideSection['detailedDescription'],
+            approach: guideSection['approach'],
+            climbingBeta: guideSection['climbingBeta'],
+            tagging: guideSection['tagging'],
+            warning: guideSection['warning'],
+            guideSectionLat: guideSection['guideSectionLat'],
+            guideSectionLon: guideSection['guideSectionLon'],
+            highlines: guideSection['highlines'],
+            //midlines: guideSection['midlines'],
+            //waterlines: guideSection['waterlines'],
+            //parklines: guideSection['parklines'],
           ),
         );
       }
@@ -93,23 +112,23 @@ class GuideArea {
     return returnGuideAreas;
   }
 
-  Future<void> addHighlines(List<String> returnColumns) async {
-    highlines =
-        await Highline.getHighlinesFromGuideArea(guideAreaName, returnColumns);
+  Future<void> addHighlines({List<String> returnColumns}) async {
+    highlines = await Highline.getHighlinesFromGuideArea(
+        guideSectionName, returnColumns);
   }
 
-  Future<void> addMidlines(List<String> returnColumns) async {
+  /*Future<void> addMidlines({List<String> returnColumns}) async {
     midlines =
-        await Midline.getMidlinesFromGuideArea(guideAreaName, returnColumns);
+        await Midline.getMidlinesFromGuideArea(guideSectionName, returnColumns);
   }
 
-  Future<void> addWaterlines(List<String> returnColumns) async {
+  Future<void> addWaterlines({List<String> returnColumns}) async {
     waterlines = await Waterline.getWaterlinesFromGuideArea(
-        guideAreaName, returnColumns);
+        guideSectionName, returnColumns);
   }
 
-  Future<void> addParklines(List<String> returnColumns) async {
-    parklines =
-        await Parkline.getParklinesFromGuideArea(guideAreaName, returnColumns);
-  }
+  Future<void> addParklines({List<String> returnColumns}) async {
+    parklines = await Parkline.getParklinesFromGuideArea(
+        guideSectionName, returnColumns);
+  }*/
 }

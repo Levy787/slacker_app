@@ -1,19 +1,15 @@
-/* 
-INSERT INTO GuideAreas (guideAreaName, description, approach, approachFromHobart, approachFromLaunceston, climbingBeta, amenities, tagging, warning, gpsLat, gpsLon, parentID)
-	SELECT nameHere,
-	descriptionHere,
-	approachHere,
-	approachFromHobartHere,
-	approachFromLauncestonHere,
-	climbingBetaHere,
-	ammenitiesHere,
-	taggingHere,
-	warningsHere,
-	gpsLatHere,
-	hpsLonHere,
-	id FROM Areas 
-	WHERE areaName='Launceston';
-*/
+
+INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
+	SELECT "Cataract Gorge",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	guideId FROM Guides
+	WHERE guideName="Cataract Gorge";
 
 INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
 	SELECT "Bluestone Bay",
@@ -24,7 +20,7 @@ INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagg
 	NULL,
 	NULL,
 	NULL,
-	id FROM Guides
+	guideId FROM Guides
 	WHERE guideName="Whitewater Wall";
 
 
@@ -37,7 +33,7 @@ INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagg
 	NULL,
 	NULL,
 	NULL,
-	id FROM Guides
+	guideId FROM Guides
 	WHERE guideName="Whitewater Wall";
 
 INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
@@ -49,7 +45,7 @@ INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagg
 	NULL,
 	NULL,
 	NULL,
-	id FROM Guides
+	guideId FROM Guides
 	WHERE guideName="Whitewater Wall";
 
 INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
@@ -61,7 +57,7 @@ INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagg
 	NULL,
 	NULL,
 	NULL,
-	id FROM Guides
+	guideId FROM Guides
 	WHERE guideName="Whitewater Wall";
 
 INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
@@ -73,7 +69,7 @@ INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagg
 	NULL,
 	NULL,
 	NULL,
-	id FROM Guides
+	guideId FROM Guides
 	WHERE guideName="Whitewater Wall";
 
 INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
@@ -85,5 +81,41 @@ INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagg
 	NULL,
 	NULL,
 	NULL,
-	id FROM Guides
+	guideId FROM Guides
 	WHERE guideName="Whitewater Wall";
+	
+INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
+	SELECT "The Underworld",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	guideId FROM Guides
+	WHERE guideName="The Underworld";
+	
+INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
+	SELECT "Nicholas Needle",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	guideId FROM Guides
+	WHERE guideName="Nicholas Needle";
+	
+INSERT INTO GuideAreas (guideAreaName, description, approach, climbingBeta, tagging, warning, gpsLat, gpsLon, parentID)
+	SELECT "Mt Geryon and The Acropolis",
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	NULL,
+	guideId FROM Guides
+	WHERE guideName="Mt Geryon and The Acropolis";

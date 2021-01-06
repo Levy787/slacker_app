@@ -1,31 +1,3 @@
-/*
-INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
-	SELECT highlineNumber,
-	highlineName, 
-	length, 
-	height, 
-	stars, 
-	whoEstablished, 
-	whenEstablished, 
-	whoFA, 
-	whenFA, 
-	climbingBeta, 
-	warnings, 
-	description, 
-	tagging, 
-	tensionEnd, 
-	gpsLatTensionEnd,
-	gpsLonStaticEnd,
-	gpsLatTensionEnd,
-	gpsLonStaticEnd ,
-	tensionEndMainAnchor, 
-	tensionEndBackupAnchor, 
-	staticEndMainAnchor, 
-	staticEndBackupAnchor,
-	id FROM GuideAreas
-	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
-*/
-
 
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
 	SELECT 1,
@@ -50,7 +22,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"Find a few additional flakes or cam placements to stop the masterpoint from moving around too much.",
 	"Another 10m+ of spansets or rope with lots of rope protection",
 	"Small abseil down to large slightly chossy pillar (11m of spansets to wrap it)",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
 
 
@@ -77,7 +49,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"Small to medium cams and/or rap rope",
 	"Sling flat flake systems on top of enormous square boulder",
 	"Find a few additional flakes or cam placements to stop the masterpoint from moving around too much.",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
 
 
@@ -104,7 +76,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main",
 	"Sling medium-ish boulders that are the main way to climb up onto the enormous boulder.",
 	"more boulder wrapping",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Beowulf / Deep Water Zawn";
 
 
@@ -134,7 +106,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main",
 	"Med to Large cams plus wrap huge slanted boulder, 25m of static to equalise all points plus lots of rope pro.",
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Lassie’s Wall / Big Zawn";
 
 
@@ -163,7 +135,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"There are numerous natural options the best being a large ‘fridge size’ boulder directly behind the bolts.",
 	"Use a series of trees (4 is best) and extend them roughly 10m-15m forward using the ‘tipper dipper’ boulder as an A-Frame. Please do NOT anchor only off the boulder.",
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Lassie’s Wall / Big Zawn";
 
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -189,7 +161,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main (use rope pro for the backup webbing near the anchor)",
 	"3 U bolts in the back of the tallish boulder (at eye level)",
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Lassie’s Wall / Big Zawn";
 
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -215,7 +187,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main",
 	"2x U bolts. Use a BD #5 cam to pull the masterpoint down to avoid rubbing (bolts are close together and about 6m back from the edge)",
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "White Stack Area";
 
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -241,12 +213,10 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main",
 	"Wrap boulders atop the ridgeline that separates Lassies from white stack and use a dodgy but obvious tree to redirect the anchor 6-8m down and level.",
 	"As for main.",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "White Stack Area";
 	
-/* Cataract Gorge */
-	
-INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, gpsLatTensionEnd REAL, gpsLonStaticEnd REAL, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
+INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd , gpsLonStaticEnd , gpsLatTensionEnd , gpsLonStaticEnd , tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
 	SELECT 1,
 	"BOB", 
 	56, 
@@ -269,7 +239,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"1 x 8mm thru expansion bolt & tree", 
 	"3 x 8mm thru expansion bolts", 
 	"2 x 8mm thru expansion bolts",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Cataract Gorge";
 	
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -295,7 +265,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main", 
 	"10m girth around obvious block high up on the gorge wall, difficult to position the slings", 
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Cataract Gorge";
 	
 -- Ben Lomond
@@ -323,7 +293,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main", 
 	"A series of wraps and Trad gear using another flat topped pillar as an A-frame.", 
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Jacob's Ladder";
 	
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -349,7 +319,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	NULL, 
 	NULL, 
 	NULL,
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Flew's Flutes";
 	
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -375,7 +345,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	NULL, 
 	NULL, 
 	NULL,
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Flew's Flutes";
 	
 -- Freycinet, Nicholas' Needle
@@ -403,7 +373,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main (super long dyneema whoopies and rope pro are handy)", 
 	"Equalise a number of small shrubs, boulders and the single bolt and medium boulder. Bring rope pro", 
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "TNicholas' Needle";
 
 -- NORTH WEST TASMANIA
@@ -432,7 +402,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main", 
 	"South - Foresight. 9m of material to wrap the summit (double it for a backup) + rope pro.", 
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Mt Geryon and The Acropolis";
 	
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -458,7 +428,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main", 
 	"South - From the south geryon tower, Rap / Scramble (very exposed grade 12) down to level with the foresight (20m of rope required). Anchor off two ideal horns of rock on the east side of the mountain. 8m of material to girth hitch both and tie a BFK.", 
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Mt Geryon and The Acropolis";
 
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -484,7 +454,7 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	"As for main", 
 	"South - A few different options here. Either scorpion the huge horizontal block (a little sketch) or sling a ‘locked in’ block that is slightly higher but requires some horizontal stabilization. This second option uses 6m for main (6m more for backup) and about 15-20m of cord for stabilizers. Once again, Lots of rope pro required.", 
 	"As for main",
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Mt Geryon and The Acropolis";
 
 INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEstablished, whenEstablished, whoFA, whenFA, climbingBeta, warnings, description, tagging, tensionEnd, gpsLatTensionEnd, gpsLonStaticEnd, gpsLatTensionEnd, gpsLonStaticEnd, tensionEndMainAnchor, tensionEndBackupAnchor, staticEndMainAnchor,  staticEndBackupAnchor, parentID)
@@ -510,5 +480,5 @@ INSERT INTO Highlines(highlineNumber, highlineName, length, height, stars, whoEs
 	NULL, 
 	NULL, 
 	NULL,
-	id FROM GuideAreas
+	guideAreaId FROM GuideAreas
 	WHERE guideAreaName = "Mt Geryon and The Acropolis";
