@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:slacker/classes/highline_db_provider.dart';
 import 'package:slacker/classes/model_classes/state_class.dart';
 import 'package:slacker/globals.dart' as globals;
+import 'package:slacker/root_widget.dart';
 import 'explore_screen.dart';
 
 class WelcomeScreen extends StatefulWidget {
@@ -24,10 +25,9 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
   Future<void> getExplore(String stateName) async {
     States state = await States.getState(stateName);
     state.addRegions(['regionName', 'briefDescription']);
-    //await Future.delayed(const Duration(seconds: 5));
-    Navigator.pushNamed(
+    Navigator.popAndPushNamed(
       context,
-      ExploreScreen.id,
+      RootWidget.id,
       arguments: {'state': state},
     );
   }

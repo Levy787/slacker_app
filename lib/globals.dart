@@ -1,14 +1,30 @@
 library my_prj.globals;
 
+import 'package:flutter/material.dart';
+
 import 'package:sqflite/sqflite.dart';
 
 import 'classes/model_classes/country_class.dart';
 import 'classes/model_classes/guide_class.dart';
 import 'classes/model_classes/state_class.dart';
 
-Database db; //Main database for Slacker
+///Cache data
+Future<States> exploreData = getExploreData('Tasmania');
+
+///Bottom Navigation Code
+enum TabItem { feed, explore, guide, map, profile }
+
+const Map<TabItem, String> tabName = {
+  TabItem.feed: 'Feed',
+  TabItem.explore: 'Explore',
+  TabItem.guide: 'Guide',
+  TabItem.map: 'Map',
+  TabItem.profile: 'Profile',
+};
 
 ///Database Functions
+
+Database db; //Main database for Slacker
 Future<Country> getGuideSelectData(String countryName) async {
   Country country = await Country.getCountry(countryName, ['CountryName']);
   await country.addStates(['stateName']);
@@ -25,7 +41,10 @@ Future<Country> getGuideSelectData(String countryName) async {
 }
 
 Future<States> getExploreData(String stateName) async {
+  print('getting explore data');
   States state = await States.getState(stateName);
+  print('got data');
+  print(state.stateName);
   return state;
 }
 

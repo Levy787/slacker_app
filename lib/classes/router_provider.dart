@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slacker/root_widget.dart';
 import 'package:slacker/screens/explore_screen.dart';
 import 'package:slacker/screens/loading_screen.dart';
 import 'package:slacker/screens/guide_select_screen.dart';
@@ -14,6 +15,8 @@ class RouteProvider {
       return generateExploreRoute(settings);
     } else if (settings.name == GuideScreen.id) {
       return generateGuideRoute(settings);
+    } else if (settings.name == RootWidget.id) {
+      return generateRootWidgetRoute(settings);
     } else {
       return null;
     }
@@ -26,6 +29,17 @@ class RouteProvider {
         return LoadingScreen(
           route: arguments['route'],
           nextArguments: arguments['arguments'],
+        );
+      },
+    );
+  }
+
+  static Route<dynamic> generateRootWidgetRoute(RouteSettings settings) {
+    final Map arguments = settings.arguments;
+    return MaterialPageRoute(
+      builder: (context) {
+        return RootWidget(
+          state: arguments['state'],
         );
       },
     );

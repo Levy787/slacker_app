@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:slacker/root_widget.dart';
 import 'screens/welcome_screen.dart';
 import 'package:slacker/classes/router_provider.dart';
 import 'package:slacker/globals.dart' as globals;
@@ -16,9 +17,15 @@ class MyApp extends StatelessWidget {
               fontFamily: 'Montserrat',
               height: 1.2,
               fontSize: 15.0,
-              letterSpacing: 1.1,
+              letterSpacing: 0.8,
               fontWeight: FontWeight.w500,
               color: Colors.black),
+          headline2: TextStyle(
+            fontFamily: 'PlayfairDisplay',
+            height: 1.25,
+            fontSize: 54.0,
+            color: Colors.black,
+          ),
           headline3: TextStyle(
             fontFamily: 'PlayfairDisplay',
             height: 1.25,
@@ -44,7 +51,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: WelcomeScreen(),
+      home: WelcomeScreen(), //WelcomeScreen(),
       onGenerateRoute: RouteProvider.generateRoute,
     );
   }

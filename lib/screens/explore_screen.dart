@@ -7,14 +7,17 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:slacker/classes/model_classes/country_class.dart';
 import 'package:slacker/classes/model_classes/state_class.dart';
 import 'package:slacker/globals.dart' as globals;
+import 'package:slacker/widgets/bottom_sheets/html_bottom_sheet.dart';
 import 'package:slacker/widgets/custom_tab_indicator.dart';
 import 'package:slacker/widgets/image_card.dart';
 import 'package:flutter_html/flutter_html.dart';
 
+import '../constants.dart';
+
 const double kExplorePageHorizontalPadding = 15.0;
 
 class ExploreScreen extends StatefulWidget {
-  static String id = 'explore_screen';
+  static const String id = 'explore_screen';
   final States state;
   ExploreScreen({this.state});
   @override
@@ -27,17 +30,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        automaticallyImplyLeading: false,
-        title: Text('Explore',
-            style: Theme.of(context)
-                .textTheme
-                .headline6
-                .copyWith(fontWeight: FontWeight.w700)),
-        //elevation: 0,
-        backgroundColor: Colors.white,
-        centerTitle: true,
-      ),
       body: Container(
         child: ListView(
           physics: BouncingScrollPhysics(),
@@ -105,35 +97,23 @@ class _ExploreScreenState extends State<ExploreScreen> {
                         //TODO: Implement pageController
                         //controller: _pageController,
                         scrollDirection: Axis.horizontal,
-                        children: [
+                        children: /*widget.state
+                            .getExploreGeneralInformationCards(context),*/
+
+                            [
                           ImageCard(
                             imageDirectory: 'assets/images/retro_logo.png',
-                            heading: 'History',
+                            heading: 'Weather',
                             cardHeight: 290.0,
                             margin: EdgeInsets.all(15.0),
                             onTap: () {
-                              showModalBottomSheet(
-                                  isDismissible: true,
-                                  context: context,
-                                  builder: (BuildContext context) {
-                                    return ListView(
-                                      physics: BouncingScrollPhysics(),
-                                      children: [
-                                        Html(
-                                          data: widget.state.weather,
-                                          onLinkTap: (src) {
-                                            print(src);
-                                          },
-                                          style: {},
-                                        ),
-                                      ],
-                                    );
-                                  });
+                              HtmlBottomSheet.showHtmlBottomSheet(
+                                  context, widget.state.weather, false);
                             },
                           ),
                           ImageCard(
                             imageDirectory: 'assets/images/retro_logo.png',
-                            heading: 'Weather',
+                            heading: 'History',
                             cardHeight: 290.0,
                             margin: EdgeInsets.all(15.0),
                           ),
@@ -365,22 +345,6 @@ class _ExploreScreenState extends State<ExploreScreen> {
             )*/
           ],
         ),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        fixedColor: Colors.red,
-        unselectedItemColor: Colors.black,
-        showUnselectedLabels: true,
-        currentIndex: 1,
-        onTap: (index) {
-          print(index);
-        },
-        items: [
-          BottomNavigationBarItem(icon: Icon(Icons.rss_feed), label: 'Feed'),
-          BottomNavigationBarItem(icon: Icon(Icons.landscape), label: 'Guide'),
-          BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add Line'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle), label: 'Profile'),
-        ],
       ),
     );
   }

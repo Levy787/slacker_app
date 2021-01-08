@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-const kBottomSheetRadius = 25.0;
+const kBottomSheetRadius = 10.0;
 const kFormThemeColor = Color(0XFF1779B1);
 const kFormTextInputHeadingColor = Color(0xFF424242);
 
@@ -29,7 +29,7 @@ InputDecoration kAppBarSearchBarDecoration = InputDecoration(
 );
 
 const kBottomSheetDecotarion = BoxDecoration(
-  color: const Color(0xFFE0E0E0),
+  color: const Color(0xFFFFFFFF), //Color(0xFFE0E0E0),
   borderRadius: BorderRadius.only(
     topLeft: Radius.circular(kBottomSheetRadius),
     topRight: Radius.circular(kBottomSheetRadius),

@@ -21,82 +21,85 @@ class RegisterBottomSheet extends StatelessWidget {
       backgroundColor: Colors.transparent,
       context: context,
       isScrollControlled: true,
+      enableDrag: true,
+      isDismissible: true,
       builder: (context) => RegisterBottomSheet(),
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Container(
-        decoration: kBottomSheetDecotarion,
-        padding:
-            EdgeInsets.only(bottom: MediaQuery.of(context).viewInsets.bottom),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: 20.0),
-            Text(
-              'Create Account',
-              style: TextStyle(
-                fontSize: 34.0,
-                fontWeight: FontWeight.bold,
+    return SafeArea(
+      child: SingleChildScrollView(
+        child: Container(
+          decoration: kBottomSheetDecotarion,
+          padding: EdgeInsets.only(top: 50.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: 20.0),
+              Text(
+                'Create Account',
+                style: TextStyle(
+                  fontSize: 34.0,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
-            ),
-            SizedBox(height: 30.0),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                FormInputField(
-                  titleText: 'Full Name',
-                  titleTextColor: kFormTextInputHeadingColor,
-                  outlineColor: kFormThemeColor,
-                  autofocus: false,
-                ),
-                FormInputField(
-                  titleText: 'Username',
-                  titleTextColor: kFormTextInputHeadingColor,
-                  outlineColor: kFormThemeColor,
-                ),
-                FormInputField(
-                  titleText: 'Email Address',
-                  titleTextColor: kFormTextInputHeadingColor,
-                  outlineColor: kFormThemeColor,
-                ),
-                FormInputField(
-                  titleText: 'Password',
-                  titleTextColor: kFormTextInputHeadingColor,
-                  outlineColor: kFormThemeColor,
-                  isPassword: true,
-                ),
-                RoundedButton(
-                  text: 'Register',
-                  onPressed: () {
-                    print('Register');
-                    Navigator.popAndPushNamed(
-                      context,
-                      LoadingScreen.id,
-                      arguments: {
-                        'route': ExploreScreen.id,
-                        'arguments': {'state': 'Tasmania'}
-                      },
-                    );
-                  },
-                  backgroundColor: kFormThemeColor,
-                  borderWidth: 0.0,
-                  textColor: Colors.white,
-                  margin: EdgeInsets.fromLTRB(10.0, 15, 10.0, 5.0),
-                ),
-                FormHyperText(
-                  normalText: 'Already have an account?',
-                  linkText: 'Sign In',
-                  linkTextColor: kFormThemeColor,
-                  onTap: () =>
-                      LoginBottomSheet.showLoginBottomSheet(context, true),
-                ),
-              ],
-            ),
-          ],
+              SizedBox(height: 30.0),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  FormInputField(
+                    titleText: 'Full Name',
+                    titleTextColor: kFormTextInputHeadingColor,
+                    outlineColor: kFormThemeColor,
+                    autofocus: false,
+                  ),
+                  FormInputField(
+                    titleText: 'Username',
+                    titleTextColor: kFormTextInputHeadingColor,
+                    outlineColor: kFormThemeColor,
+                  ),
+                  FormInputField(
+                    titleText: 'Email Address',
+                    titleTextColor: kFormTextInputHeadingColor,
+                    outlineColor: kFormThemeColor,
+                  ),
+                  FormInputField(
+                    titleText: 'Password',
+                    titleTextColor: kFormTextInputHeadingColor,
+                    outlineColor: kFormThemeColor,
+                    isPassword: true,
+                  ),
+                  RoundedButton(
+                    text: 'Register',
+                    onPressed: () {
+                      print('Register');
+                      Navigator.popAndPushNamed(
+                        context,
+                        LoadingScreen.id,
+                        arguments: {
+                          'route': ExploreScreen.id,
+                          'arguments': {'state': 'Tasmania'}
+                        },
+                      );
+                    },
+                    backgroundColor: kFormThemeColor,
+                    borderWidth: 0.0,
+                    textColor: Colors.white,
+                    margin: EdgeInsets.fromLTRB(10.0, 15, 10.0, 5.0),
+                  ),
+                  FormHyperText(
+                    normalText: 'Already have an account?',
+                    linkText: 'Sign In',
+                    linkTextColor: kFormThemeColor,
+                    onTap: () =>
+                        LoginBottomSheet.showLoginBottomSheet(context, true),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );

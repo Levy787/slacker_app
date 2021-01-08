@@ -12,7 +12,7 @@ import 'package:slacker/globals.dart' as globals;
 //TODO: Maybe implement a typedef for the selectChildrenOfParent
 
 class HighlineDbProvider {
-  static const currentDatabaseVersion = 3;
+  static const currentDatabaseVersion = 1;
   Database db;
 
   Future<void> init() async {
