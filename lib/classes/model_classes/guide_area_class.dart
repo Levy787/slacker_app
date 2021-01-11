@@ -1,7 +1,4 @@
 import 'package:slacker/classes/model_classes/highline_class.dart';
-import 'package:slacker/classes/model_classes/midline_class.dart';
-import 'package:slacker/classes/model_classes/waterline_class.dart';
-import 'package:slacker/classes/model_classes/parkline_class.dart';
 import 'package:slacker/globals.dart' as globals;
 
 class GuideSections {

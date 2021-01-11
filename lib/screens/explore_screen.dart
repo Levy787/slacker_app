@@ -1,176 +1,174 @@
 import 'dart:ui';
-
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:slacker/classes/model_classes/country_class.dart';
+import 'package:provider/provider.dart';
 import 'package:slacker/classes/model_classes/state_class.dart';
-import 'package:slacker/globals.dart' as globals;
-import 'package:slacker/widgets/bottom_sheets/html_bottom_sheet.dart';
+import 'package:slacker/classes/tab_provider_class.dart';
 import 'package:slacker/widgets/custom_tab_indicator.dart';
-import 'package:slacker/widgets/image_card.dart';
-import 'package:flutter_html/flutter_html.dart';
-
-import '../constants.dart';
+import 'package:slacker/globals.dart' as globals;
 
 const double kExplorePageHorizontalPadding = 15.0;
 
-class ExploreScreen extends StatefulWidget {
+class ExploreScreen extends StatelessWidget {
   static const String id = 'explore_screen';
-  final States state;
-  ExploreScreen({this.state});
-  @override
-  _ExploreScreenState createState() => _ExploreScreenState();
-}
-
-class _ExploreScreenState extends State<ExploreScreen> {
   final _pageController = PageController(viewportFraction: 0.877);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        child: ListView(
-          physics: BouncingScrollPhysics(),
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.only(
-                top: 5.0,
-                left: kExplorePageHorizontalPadding,
-                right: kExplorePageHorizontalPadding,
-              ),
-              child: Text(
-                widget.state.stateName,
-                style: Theme.of(context).textTheme.headline3,
-                textAlign: TextAlign.center,
-              ),
+    TabProvider tabProvider = Provider.of<TabProvider>(context);
+    States stateData = tabProvider.exploreStateCache;
+    return Container(
+      child: ListView(
+        physics: BouncingScrollPhysics(),
+        children: <Widget>[
+          Padding(
+            padding: EdgeInsets.only(
+              top: 5.0,
+              left: kExplorePageHorizontalPadding,
+              right: kExplorePageHorizontalPadding,
             ),
-            Padding(
-              padding: EdgeInsets.only(
-                top: 10,
-                left: kExplorePageHorizontalPadding,
-                right: kExplorePageHorizontalPadding,
-              ),
-              child: Text(
-                widget.state.detailedDescription,
-                style: Theme.of(context).textTheme.bodyText2,
-                textAlign: TextAlign.center,
-              ),
+            child: Text(
+              stateData.stateName,
+              style: Theme.of(context).textTheme.headline3,
+              textAlign: TextAlign.center,
             ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(
+              top: 10,
+              left: kExplorePageHorizontalPadding,
+              right: kExplorePageHorizontalPadding,
+            ),
+            child: Text(
+              stateData.detailedDescription,
+              style: Theme.of(context).textTheme.bodyText2,
+              textAlign: TextAlign.center,
+            ),
+          ),
 
-            Container(
-              margin: EdgeInsets.only(top: 15.0),
-              padding: EdgeInsets.symmetric(vertical: 15.0),
-              //height: 700.0,
-              color: Colors.black,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'General\nInformation',
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          color: Colors.white,
-                          fontSize: 28.0,
-                          fontWeight: FontWeight.w600),
-                    ),
+          Container(
+            margin: EdgeInsets.only(top: 15.0),
+            padding: EdgeInsets.symmetric(vertical: 15.0),
+            //height: 700.0,
+            color: Colors.black,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'General\nInformation',
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
+                        color: Colors.white,
+                        fontSize: 28.0,
+                        fontWeight: FontWeight.w600),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20),
-                    child: Text(
-                      'Want to know more about Tasmania?\nHave a look at it\'s history, ethics and other guides.',
-                      style: Theme.of(context).textTheme.bodyText2.copyWith(
-                          color: Colors.white,
-                          fontSize: 14.0,
-                          fontWeight: FontWeight.w400),
-                    ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'Want to know more about Tasmania?\nHave a look at it\'s history, ethics and other guides.',
+                    style: Theme.of(context).textTheme.bodyText2.copyWith(
+                        color: Colors.white,
+                        fontSize: 14.0,
+                        fontWeight: FontWeight.w400),
                   ),
-                  SizedBox(height: 10.0),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 10.0),
-                    child: SizedBox(
-                      height: 320.0,
-                      child: ListView(
-                        physics: BouncingScrollPhysics(),
-                        //TODO: Implement pageController
-                        //controller: _pageController,
-                        scrollDirection: Axis.horizontal,
-                        children: /*widget.state
-                            .getExploreGeneralInformationCards(context),*/
-
-                            [
+                ),
+                SizedBox(height: 10.0),
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 10.0),
+                  child: SizedBox(
+                    height: 320.0,
+                    child: ListView(
+                      physics: BouncingScrollPhysics(),
+                      //TODO: Implement pageController
+                      //controller: _pageController,
+                      scrollDirection: Axis.horizontal,
+                      children:
+                          stateData.getExploreGeneralInformationCards(context),
+                      /* [
                           ImageCard(
-                            imageDirectory: 'assets/images/retro_logo.png',
-                            heading: 'Weather',
-                            cardHeight: 290.0,
-                            margin: EdgeInsets.all(15.0),
-                            onTap: () {
-                              HtmlBottomSheet.showHtmlBottomSheet(
+                              imageDirectory: 'assets/images/retro_logo.png',
+                              heading: 'Weather',
+                              cardHeight: 290.0,
+                              margin: EdgeInsets.all(15.0),
+                              onTap: () {
+                                Navigator.of(context).pushNamed(
+                                  ExploreGeneralInformationScreen.id,
+                                  arguments: {
+                                    'displayHtml': widget.state.weather
+                                  },
+                                );
+                              }
+                              */ /*HtmlBottomSheet.showHtmlBottomSheet(
                                   context, widget.state.weather, false);
-                            },
-                          ),
+                            },*/ /*
+                              ),
                           ImageCard(
                             imageDirectory: 'assets/images/retro_logo.png',
                             heading: 'History',
                             cardHeight: 290.0,
                             margin: EdgeInsets.all(15.0),
+                            onTap: () {
+                              print('Getting state general information');
+                              widget.state.getGeneralInformation();
+                            },
                           ),
-                        ],
-                      ),
+                        ],*/
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
-            // Custom Tab bar with Custom Indicator
-            Container(
-              height: 30,
-              margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
-              child: DefaultTabController(
-                length: 4,
-                child: TabBar(
-                    labelPadding: EdgeInsets.only(left: 14.4, right: 14.4),
-                    indicatorPadding: EdgeInsets.only(left: 14.4, right: 14.4),
-                    isScrollable: true,
-                    labelColor: Color(0xFF000000),
-                    unselectedLabelColor: Color(0xFF8a8a8a),
-                    labelStyle: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w700),
-                    unselectedLabelStyle: GoogleFonts.lato(
-                        fontSize: 14, fontWeight: FontWeight.w700),
-                    indicator: RoundedRectangleTabIndicator(
-                        color: Color(0xFF000000), weight: 2.4, width: 14.4),
-                    tabs: [
-                      Tab(
-                        child: Container(
-                          child: Text('Top Guides'),
-                        ),
+          ),
+          // Custom Tab bar with Custom Indicator
+          Container(
+            height: 30,
+            margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
+            child: DefaultTabController(
+              length: 4,
+              child: TabBar(
+                  labelPadding: EdgeInsets.only(left: 14.4, right: 14.4),
+                  indicatorPadding: EdgeInsets.only(left: 14.4, right: 14.4),
+                  isScrollable: true,
+                  labelColor: Color(0xFF000000),
+                  unselectedLabelColor: Color(0xFF8a8a8a),
+                  labelStyle: GoogleFonts.lato(
+                      fontSize: 14, fontWeight: FontWeight.w700),
+                  unselectedLabelStyle: GoogleFonts.lato(
+                      fontSize: 14, fontWeight: FontWeight.w700),
+                  indicator: RoundedRectangleTabIndicator(
+                      color: Color(0xFF000000), weight: 2.4, width: 14.4),
+                  tabs: [
+                    Tab(
+                      child: Container(
+                        child: Text('Top Guides'),
                       ),
-                      Tab(
-                        child: Container(
-                          child: Text('Selected Highlines'),
-                        ),
+                    ),
+                    Tab(
+                      child: Container(
+                        child: Text('Selected Highlines'),
                       ),
-                      Tab(
-                        child: Container(
-                          child: Text('Coastal Guides'),
-                        ),
+                    ),
+                    Tab(
+                      child: Container(
+                        child: Text('Coastal Guides'),
                       ),
-                      Tab(
-                        child: Container(
-                          child: Text('Alpine Guides'),
-                        ),
-                      )
-                    ]),
-              ),
+                    ),
+                    Tab(
+                      child: Container(
+                        child: Text('Alpine Guides'),
+                      ),
+                    )
+                  ]),
             ),
+          ),
 
-            // ListView widget with PageView
-            // Recommendations Section
-            ///Uncomment this block
-            /*Container(
+          // ListView widget with PageView
+          // Recommendations Section
+          ///Uncomment this block
+          /*Container(
               height: 218.4,
               margin: EdgeInsets.only(top: 16),
               child: PageView(
@@ -236,11 +234,11 @@ class _ExploreScreenState extends State<ExploreScreen> {
               ),
             ),*/
 
-            // Dots Indicator
-            // Using SmoothPageIndicator Library
-            Padding(
-              padding: EdgeInsets.only(left: 28.8, top: 28.8),
-              /*child: SmoothPageIndicator(
+          // Dots Indicator
+          // Using SmoothPageIndicator Library
+          Padding(
+            padding: EdgeInsets.only(left: 28.8, top: 28.8),
+            /*child: SmoothPageIndicator(
                 controller: _pageController,
                 count: recommendations.length,
                 effect: ExpandingDotsEffect(
@@ -250,9 +248,9 @@ class _ExploreScreenState extends State<ExploreScreen> {
                     dotWidth: 6,
                     spacing: 4.8),
               ),*/
-            ),
+          ),
 
-            /*// Text Widget for Popular Categories
+          /*// Text Widget for Popular Categories
             Padding(
               padding: EdgeInsets.only(top: 48, left: 28.8, right: 28.8),
               child: Row(
@@ -343,8 +341,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
                 },
               ),
             )*/
-          ],
-        ),
+        ],
       ),
     );
   }

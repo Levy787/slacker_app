@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:slacker/classes/model_classes/guide_area_class.dart';
 import 'package:slacker/classes/model_classes/guide_class.dart';
-import 'package:slacker/widgets/app_bars/sliver_image_app_bar.dart';
-import 'package:slacker/widgets/guide_scroll.dart';
 
 class GuideScreen extends StatelessWidget {
   static const String id = 'guide_screen';

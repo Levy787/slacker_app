@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:slacker/widgets/custom_expansion_tile.dart';
-import 'package:slacker/widgets/dropdown_container.dart';
 
 import 'model_classes/area_class.dart';
 import 'model_classes/country_class.dart';
@@ -32,18 +31,7 @@ class GuideSelectHelper {
         ),
       );
       region.areas.forEach((Area area) {
-        returnList.add(
-          DropdownContainer(
-            header: area.areaName,
-            children:
-                area.guides.map((Guide guide) => guide.guideName).toList(),
-            headerContractedColor: Colors.blueGrey[50],
-            headerExpandedColor: Colors.blueGrey[100],
-            headerExpandedTextStyle:
-                TextStyle(fontSize: 18.0, fontWeight: FontWeight.w700),
-            headerContractedTextStyle: TextStyle(fontSize: 18.0),
-          ),
-        );
+        returnList.add(null); //TODO:
       });
     });
     return returnList;

@@ -1,7 +1,7 @@
 import 'package:slacker/classes/model_classes/region_class.dart';
 import 'package:flutter/material.dart';
 import 'package:slacker/globals.dart' as globals;
-import 'package:slacker/widgets/bottom_sheets/html_bottom_sheet.dart';
+import 'package:slacker/screens/explore_general_information_screen.dart';
 import 'package:slacker/widgets/image_card.dart';
 
 class States {
@@ -92,24 +92,27 @@ class States {
   }
 
   Map<String, dynamic> getGeneralInformation() {
-    List generalInformation = [
-      detailedDescription,
-      history,
-      ethics,
-      weather,
-      camping,
-      facilities,
-      amenities,
-      survivalGuide,
-      socialMedia,
-    ];
-    Map<String, String> returnMap = {};
-    generalInformation.forEach((element) {
-      if (element != null) {
-        returnMap[element.toString()] = element;
-      }
-    });
+    Map<String, String> generalInformation = {
+      'General Information': detailedDescription,
+      'History': history,
+      'Ethics': ethics,
+      'Weather': weather,
+      'Camping': camping,
+      'Facilities': facilities,
+      'Amenities': amenities,
+      'Survival Guide': survivalGuide,
+      'Social Media': socialMedia,
+    };
 
+    Map<String, String> returnMap = {};
+    generalInformation.forEach(
+      (name, value) {
+        //TODO: Fix this, NULL coming from database
+        if (value.length > 10) {
+          returnMap[name] = value;
+        }
+      },
+    );
     return returnMap;
   }
 
@@ -118,15 +121,19 @@ class States {
     List<Widget> returnWidgets = [];
 
     for (var heading in nonNullGeneralInformation.keys) {
-      ImageCard(
-        imageDirectory: 'assets/images/retro_logo.png',
-        heading: heading,
-        cardHeight: 290.0,
-        margin: EdgeInsets.all(15.0),
-        onTap: () {
-          HtmlBottomSheet.showHtmlBottomSheet(
-              context, nonNullGeneralInformation[heading], false);
-        },
+      returnWidgets.add(
+        ImageCard(
+          imageDirectory: 'assets/images/retro_logo.png',
+          heading: heading,
+          cardHeight: 290.0,
+          margin: EdgeInsets.all(15.0),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              ExploreGeneralInformationScreen.id,
+              arguments: {'displayHtml': nonNullGeneralInformation[heading]},
+            );
+          },
+        ),
       );
     }
     return returnWidgets;
@@ -134,7 +141,7 @@ class States {
 
   static Future<States> getState(String stateName,
       {List<String> returnColumns}) async {
-    print('Getting state - Query');
+    print('running get state query');
     States returnState;
     await globals.db.query(
       'States',

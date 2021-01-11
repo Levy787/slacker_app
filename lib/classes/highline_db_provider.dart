@@ -1,7 +1,4 @@
-import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:sqflite/sqflite.dart';
-//import 'package:path_provider/path_provider.dart';
 import 'dart:io';
 import 'package:path/path.dart';
 import 'dart:async';
@@ -13,9 +10,10 @@ import 'package:slacker/globals.dart' as globals;
 
 class HighlineDbProvider {
   static const currentDatabaseVersion = 1;
-  Database db;
 
-  Future<void> init() async {
+  static Future<void> init() async {
+    Database db;
+
     String localDatabasePath = 'assets/database/database.db';
 
     //Internal database path
@@ -24,18 +22,16 @@ class HighlineDbProvider {
     db = await openDatabase(path);
 
     if (await db.getVersion() < currentDatabaseVersion) {
-      //TODO: Get information from profile table, just update highlines and what not
       print('Database version out of date, creating a new one');
       db.close();
       //If exists delete otherwise continue
       await deleteDatabase(path);
 
-      await checkParentDirectoryExists(path);
+      await _checkParentDirectoryExists(path);
 
-      ByteData data = await getByteDataFromLocalDatabase(localDatabasePath);
-      List<int> bytes = databaseByteDataToList(data);
-
-      await writeBytesToInternalDatabase(path, bytes);
+      ByteData data = await _getByteDataFromLocalDatabase(localDatabasePath);
+      List<int> bytes = _databaseByteDataToList(data);
+      await _writeBytesToInternalDatabase(path, bytes);
 
       // open the database
       db = await openDatabase(path);
@@ -46,7 +42,29 @@ class HighlineDbProvider {
     globals.db = db;
   }
 
-  Future<Map<String, dynamic>> getGuideSelectScreenData(
+  static Future<void> _checkParentDirectoryExists(var path) async {
+    try {
+      await Directory(dirname(path)).create(recursive: true);
+    } catch (e) {
+      print(e); //TODO Remove for Production
+    }
+  }
+
+  static Future<ByteData> _getByteDataFromLocalDatabase(
+      String localDatabasePath) async {
+    return await rootBundle.load(join(localDatabasePath));
+  }
+
+  static List<int> _databaseByteDataToList(ByteData data) {
+    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
+  }
+
+  static Future<void> _writeBytesToInternalDatabase(
+      var path, List<int> bytes) async {
+    await File(path).writeAsBytes(bytes, flush: true);
+  }
+
+/*  Future<Map<String, dynamic>> getGuideSelectScreenData(
       String countryName) async {
     Map<String, dynamic> json = {
       countryName: {'states': {}}
@@ -142,11 +160,8 @@ class HighlineDbProvider {
     return children;
   }
 
-  Map<String, dynamic> addStatesToCountryJson({
-    Map json,
-    List states,
-    String countryName,
-  }) {
+  Map<String, dynamic> addStatesToCountryJson(
+      {Map json, List states, String countryName}) {
     states.forEach(
       (state) {
         json[countryName]['states'][state] = {};
@@ -155,12 +170,8 @@ class HighlineDbProvider {
     return json;
   }
 
-  Map<String, dynamic> addRegionsToStateJson({
-    Map json,
-    List regions,
-    String countryName,
-    String stateName,
-  }) {
+  Map<String, dynamic> addRegionsToStateJson(
+      {Map json, List regions, String countryName, String stateName}) {
     regions.forEach(
       (region) {
         json[countryName]['states'][stateName]['regions'][region] = {};
@@ -169,14 +180,13 @@ class HighlineDbProvider {
     return json;
   }
 
-  Map<String, dynamic> addAreasToRegionJson({
-    Map json,
-    List areas,
-    String countryName,
-    String stateName,
-    String regionName,
-    String areaName,
-  }) {
+  Map<String, dynamic> addAreasToRegionJson(
+      {Map json,
+      List areas,
+      String countryName,
+      String stateName,
+      String regionName,
+      String areaName}) {
     areas.forEach(
       (area) {
         json[countryName]['states'][stateName]['regions'][regionName]['areas']
@@ -186,14 +196,13 @@ class HighlineDbProvider {
     return json;
   }
 
-  Map<String, dynamic> addGuidesToAreaJson({
-    Map json,
-    List guides,
-    String countryName,
-    String stateName,
-    String regionName,
-    String areaName,
-  }) {
+  Map<String, dynamic> addGuidesToAreaJson(
+      {Map json,
+      List guides,
+      String countryName,
+      String stateName,
+      String regionName,
+      String areaName}) {
     guides.forEach(
       (guide) {
         json[countryName]['states'][stateName]['regions'][regionName]['areas']
@@ -510,9 +519,9 @@ class HighlineDbProvider {
       parentColName: 'guideAreaName',
       parentTable: 'GuideAreas',
     );
-  }
+  }*/
 
-  Future<List<dynamic>> getChildrenItemsFromParent({
+  /*Future<List<dynamic>> getChildrenItemsFromParent({
     String parentTable,
     String parentColName,
     String parentName,
@@ -528,26 +537,6 @@ class HighlineDbProvider {
     childrenList.sort();
 
     return childrenList;
-  }
+  }*/
 
-  Future<void> checkParentDirectoryExists(var path) async {
-    try {
-      await Directory(dirname(path)).create(recursive: true);
-    } catch (e) {
-      print(e); //TODO Remove for Production
-    }
-  }
-
-  Future<ByteData> getByteDataFromLocalDatabase(
-      String localDataBasePath) async {
-    return await rootBundle.load(join(localDataBasePath));
-  }
-
-  List<int> databaseByteDataToList(ByteData data) {
-    return data.buffer.asUint8List(data.offsetInBytes, data.lengthInBytes);
-  }
-
-  Future<void> writeBytesToInternalDatabase(var path, List<int> bytes) async {
-    await File(path).writeAsBytes(bytes, flush: true);
-  }
 }

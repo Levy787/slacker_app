@@ -1,12 +1,13 @@
 library my_prj.globals;
 
 import 'package:flutter/material.dart';
-
 import 'package:sqflite/sqflite.dart';
-
 import 'classes/model_classes/country_class.dart';
 import 'classes/model_classes/guide_class.dart';
 import 'classes/model_classes/state_class.dart';
+
+//This is the state which will be displayed in the explore and guide pages of the app
+String activeState = 'Tasmania';
 
 ///Cache data
 Future<States> exploreData = getExploreData('Tasmania');
@@ -20,6 +21,14 @@ const Map<TabItem, String> tabName = {
   TabItem.guide: 'Guide',
   TabItem.map: 'Map',
   TabItem.profile: 'Profile',
+};
+
+final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
+  TabItem.feed: GlobalKey<NavigatorState>(),
+  TabItem.explore: GlobalKey<NavigatorState>(),
+  TabItem.guide: GlobalKey<NavigatorState>(),
+  TabItem.map: GlobalKey<NavigatorState>(),
+  TabItem.profile: GlobalKey<NavigatorState>(),
 };
 
 ///Database Functions
