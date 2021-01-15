@@ -121,7 +121,7 @@ class Highline {
         'GuideSections', 'guideSectionId', 'guideSectionName', guideArea);
     await globals
         .getChildrenOfParent(
-            'Highlines', returnColumns, 'guideSection', parentId)
+            'Highlines', returnColumns, 'guideSectionId', parentId)
         .then((response) async {
       for (var highline in response) {
         returnHighlines.add(

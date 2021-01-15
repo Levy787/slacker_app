@@ -91,7 +91,7 @@ class Region {
     return returnRegions;
   }
 
-  Future<void> addAreas(List<String> returnColumns) async {
+  Future<void> addAreas({List<String> returnColumns}) async {
     areas = await Area.getAreasFromRegion(regionName, returnColumns);
   }
 }

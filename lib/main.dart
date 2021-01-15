@@ -9,24 +9,48 @@ import 'globals.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  Future<States> returnState;
+
+  @override
+  void initState() {
+    super.initState();
+    initDatabase();
+  }
+
+  Future<void> initDatabase() async {
+    await HighlineDbProvider.init();
+    returnState = HighlineDbProvider.getActiveStateCache(activeState);
+  }
+
   @override
   Widget build(BuildContext context) {
     print('Main widget build');
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: FutureBuilder(
-        future: HighlineDbProvider.init(),
+        future: returnState,
         builder: (_, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return SplashScreen();
           } else if (snapshot.connectionState == ConnectionState.done) {
             return ChangeNotifierProvider<TabProvider>(
-              create: (_) => TabProvider(),
+              create: (_) => TabProvider(snapshot.data),
               child: RootWidget(),
             );
           } else if (snapshot.hasError) {
             throw ('Material app snapshot has an error');
+          } else if (snapshot.connectionState == ConnectionState.waiting) {
+            return SplashScreen();
+          } else if (snapshot.connectionState == ConnectionState.active) {
+            return SplashScreen();
+          } else if (snapshot.connectionState == ConnectionState.none) {
+            return SplashScreen();
           } else {
             throw ('Material App Future Builder Connection State not \'waiting\' or \'done\'');
           }

@@ -34,7 +34,7 @@ final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
 ///Database Functions
 
 Database db; //Main database for Slacker
-Future<Country> getGuideSelectData(String countryName) async {
+/*Future<Country> getGuideSelectData(String countryName) async {
   Country country = await Country.getCountry(countryName, ['CountryName']);
   await country.addStates(['stateName']);
   for (var state in country.states) {
@@ -47,13 +47,10 @@ Future<Country> getGuideSelectData(String countryName) async {
     }
   }
   return country;
-}
+}*/
 
 Future<States> getExploreData(String stateName) async {
-  print('getting explore data');
   States state = await States.getState(stateName);
-  print('got data');
-  print(state.stateName);
   return state;
 }
 
@@ -85,9 +82,9 @@ Future<int> getParentId(String parentTableName, String returnColumn,
   return parentId;
 }
 
-Future<dynamic> getChildrenOfParent(String childTable,
+Future<List<Map<String, dynamic>>> getChildrenOfParent(String childTable,
     List<String> returnColumns, String parentIdColumnName, int parentId) async {
-  List<dynamic> children = [];
+  List<Map<String, dynamic>> children = [];
   await db.query(
     childTable,
     columns: returnColumns,
@@ -96,11 +93,18 @@ Future<dynamic> getChildrenOfParent(String childTable,
   ).then(
     (response) => response.forEach(
       (child) {
-        children.add(
-          child,
-        );
+        children.add(child);
       },
     ),
   );
+  //Casts mutable from 'Queryset'
+  children = List<Map<String, dynamic>>.generate(
+      children.length, (index) => Map<String, dynamic>.from(children[index]),
+      growable: true);
+
+  //Removes 'NULL' values from each row
+  children.forEach((element) {
+    element.removeWhere((key, value) => value == "NULL");
+  });
   return children;
 }

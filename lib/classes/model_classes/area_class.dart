@@ -56,7 +56,7 @@ class Area {
     return returnAreas;
   }
 
-  Future<void> addGuides(List<String> returnColumns) async {
+  Future<void> addGuides({List<String> returnColumns}) async {
     guides = await Guide.getGuidesFromArea(areaName, returnColumns);
   }
 }

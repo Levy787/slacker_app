@@ -141,7 +141,6 @@ class States {
 
   static Future<States> getState(String stateName,
       {List<String> returnColumns}) async {
-    print('running get state query');
     States returnState;
     await globals.db.query(
       'States',
@@ -215,7 +214,7 @@ class States {
     return returnStates;
   }
 
-  Future<void> addRegions(List<String> returnColumns) async {
+  Future<void> addRegions({List<String> returnColumns}) async {
     regions = await Region.getRegionsFromState(stateName, returnColumns);
   }
 }

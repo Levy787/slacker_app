@@ -3,6 +3,7 @@ import 'package:slacker/globals.dart';
 import 'package:slacker/screens/explore_general_information_screen.dart';
 import 'package:slacker/screens/explore_screen.dart';
 import 'package:slacker/classes/model_classes/state_class.dart';
+import 'package:slacker/screens/guide_screen.dart';
 import 'package:slacker/screens/splash_screen.dart';
 
 class TabNavigator extends StatelessWidget {
@@ -29,6 +30,36 @@ class TabNavigator extends StatelessWidget {
           return MaterialPageRoute(
               builder: (context) => routeBuilders[routeSettings.name](context));
         });
+  }
+}
+
+class GuideNavigator extends StatelessWidget {
+  GuideNavigator({this.navigatorKey});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    if (settings.name == GuideScreen.id) {
+      return generateGuideRoute(settings);
+    } else {
+      throw ('Navigation page cannot be found');
+    }
+  }
+
+  Route<dynamic> generateGuideRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return GuideScreen();
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: navigatorKey,
+      initialRoute: GuideScreen.id,
+      onGenerateRoute: (routeSettings) => generateRoute(routeSettings),
+    );
   }
 }
 

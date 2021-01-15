@@ -15,7 +15,7 @@ class TabProvider with ChangeNotifier {
 
   States exploreStateCache;
 
-  TabProvider() {
+  TabProvider(this.exploreStateCache) {
     currentTab = homeTab;
     feedOffstage = TabItem.feed != currentTab;
     exploreOffstage = TabItem.explore != currentTab;

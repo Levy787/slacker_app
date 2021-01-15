@@ -6,10 +6,12 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:slacker/globals.dart' as globals;
 
+import 'model_classes/state_class.dart';
+
 //TODO: Maybe implement a typedef for the selectChildrenOfParent
 
 class HighlineDbProvider {
-  static const currentDatabaseVersion = 1;
+  static const currentDatabaseVersion = 3;
 
   static Future<void> init() async {
     Database db;
@@ -62,6 +64,24 @@ class HighlineDbProvider {
   static Future<void> _writeBytesToInternalDatabase(
       var path, List<int> bytes) async {
     await File(path).writeAsBytes(bytes, flush: true);
+  }
+
+  static Future<States> getActiveStateCache(String state) async {
+    States _state = await States.getState(state);
+    await _state.addRegions();
+    for (var region in _state.regions) {
+      await region.addAreas();
+      for (var area in region.areas) {
+        await area.addGuides();
+        for (var guide in area.guides) {
+          await guide.addGuideAreas();
+          for (var guideArea in guide.guideAreas) {
+            await guideArea.addHighlines();
+          }
+        }
+      }
+    }
+    return _state;
   }
 
 /*  Future<Map<String, dynamic>> getGuideSelectScreenData(

@@ -25,7 +25,7 @@ class RootWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     print('Root widget built');
     TabProvider tabProvider = Provider.of<TabProvider>(context, listen: false);
-    return FutureBuilder(
+    /*return FutureBuilder(
       future: initProvider(tabProvider),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -92,9 +92,8 @@ class RootWidget extends StatelessWidget {
                   builder: (_, guideOffstage, __) {
                     return Offstage(
                       offstage: guideOffstage,
-                      child: TabNavigator(
+                      child: GuideNavigator(
                         navigatorKey: navigatorKeys[TabItem.guide],
-                        tabItem: TabItem.guide,
                       ),
                     );
                   },
@@ -139,6 +138,106 @@ class RootWidget extends StatelessWidget {
           throw ('Error getting root widget Future');
         }
       },
+    );*/
+    return WillPopScope(
+      onWillPop: () async {
+        final isFirstRouteInCurrentTab =
+            !await navigatorKeys[tabProvider.currentTab]
+                .currentState
+                .maybePop();
+        if (isFirstRouteInCurrentTab) {
+          // if not on the 'main' tab
+          if (tabProvider.currentTab != tabProvider.homeTab) {
+            // select 'main' tab
+            tabProvider.selectTab(tabProvider.homeTab);
+            // back button handled by app
+            return false;
+          }
+        }
+        // let system handle back button if we're on the first route
+        return isFirstRouteInCurrentTab;
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          automaticallyImplyLeading: false,
+          title: Text(tabName[tabProvider.currentTab],
+              style: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(fontWeight: FontWeight.w700)),
+          backgroundColor: Colors.white,
+          centerTitle: true,
+        ),
+        body: Stack(children: <Widget>[
+          Selector<TabProvider, bool>(
+            selector: (_, feedData) => feedData.feedOffstage,
+            builder: (_, feedOffstage, __) {
+              return Offstage(
+                offstage: feedOffstage,
+                child: TabNavigator(
+                  navigatorKey: navigatorKeys[TabItem.feed],
+                  tabItem: TabItem.feed,
+                ),
+              );
+            },
+          ),
+          Selector<TabProvider, Tuple2<bool, States>>(
+            selector: (_, exploreData) => Tuple2(
+                exploreData.exploreOffstage, exploreData.exploreStateCache),
+            builder: (_, exploreOffstage, __) {
+              return Offstage(
+                offstage: exploreOffstage.item1,
+                child: ExploreNavigator(
+                    navigatorKey: navigatorKeys[TabItem.explore]),
+              );
+            },
+          ),
+          Selector<TabProvider, bool>(
+            selector: (_, guideData) => guideData.guideOffstage,
+            builder: (_, guideOffstage, __) {
+              return Offstage(
+                offstage: guideOffstage,
+                child: GuideNavigator(
+                  navigatorKey: navigatorKeys[TabItem.guide],
+                ),
+              );
+            },
+          ),
+          Selector<TabProvider, bool>(
+            selector: (_, mapData) => mapData.mapOffstage,
+            builder: (_, mapOffstage, __) {
+              return Offstage(
+                offstage: mapOffstage,
+                child: TabNavigator(
+                  navigatorKey: navigatorKeys[TabItem.map],
+                  tabItem: TabItem.map,
+                ),
+              );
+            },
+          ),
+          Selector<TabProvider, bool>(
+            selector: (_, profileData) => profileData.profileOffstage,
+            builder: (_, profileOffstage, __) {
+              return Offstage(
+                offstage: profileOffstage,
+                child: TabNavigator(
+                  navigatorKey: navigatorKeys[TabItem.profile],
+                  tabItem: TabItem.profile,
+                ),
+              );
+            },
+          ),
+        ]),
+        bottomNavigationBar: Selector<TabProvider, TabItem>(
+          selector: (_, tab) => tab.currentTab,
+          builder: (_, currentTab, __) {
+            return BottomNavigation(
+              currentTab: currentTab,
+              onSelectTab: tabProvider.selectTab,
+            );
+          },
+        ),
+      ),
     );
   }
 }

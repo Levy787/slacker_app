@@ -126,7 +126,9 @@ class Guide {
     await globals
         .getChildrenOfParent('Guides', returnColumns, 'areaId', parentId)
         .then((response) async {
-      for (var guide in response) {
+      for (Map<String, dynamic> guide in response) {
+        guide.removeWhere((key, value) =>
+            value == 'NULL'); //The removes the 'NULL' values from the query set
         returnGuides.add(
           Guide.createGuideInstance(
             guideId: guide['guideId'],

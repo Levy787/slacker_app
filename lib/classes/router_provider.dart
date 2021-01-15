@@ -38,9 +38,7 @@ class RouteProvider {
     final Map arguments = settings.arguments;
     return MaterialPageRoute(
       builder: (context) {
-        return GuideScreen(
-          guide: arguments['guide'],
-        );
+        return GuideScreen();
       },
     );
   }
