@@ -12,6 +12,8 @@ class BottomNavigation extends StatelessWidget {
       type: BottomNavigationBarType.fixed,
       unselectedItemColor: Colors.grey,
       selectedItemColor: Color(0xFF1565C0),
+      selectedLabelStyle: Theme.of(context).textTheme.bodyText1,
+      unselectedLabelStyle: Theme.of(context).textTheme.bodyText1,
       currentIndex: TabItem.values.indexOf(currentTab),
       items: [
         _buildItem(TabItem.feed),

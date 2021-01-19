@@ -39,3 +39,34 @@ const kBottomSheetDecotarion = BoxDecoration(
 final kModalSheetShape = RoundedRectangleBorder(
   borderRadius: BorderRadius.circular(kBottomSheetRadius),
 );
+
+const kStateStyle = TextStyle(
+  fontFamily: 'PlayfairDisplay',
+  fontSize: 34.0,
+  fontWeight: FontWeight.w500,
+);
+const kRegionStyle = TextStyle(
+  fontFamily: 'Montserrat',
+  fontSize: 26.0,
+  fontWeight: FontWeight.w400,
+);
+const kAreaStyle = TextStyle(
+  fontFamily: 'Montserrat',
+  fontSize: 24.0,
+  fontWeight: FontWeight.w400,
+);
+const kGuideStyle = TextStyle(
+  fontFamily: 'Montserrat',
+  fontSize: 20.0,
+  fontWeight: FontWeight.w400,
+);
+const kGuideSectionStyle = TextStyle(
+  fontFamily: 'Montserrat',
+  fontSize: 18.0,
+  fontWeight: FontWeight.w400,
+);
+const kBodyStyle = TextStyle(
+  fontFamily: 'Montserrat',
+  fontSize: 14.0,
+  fontWeight: FontWeight.w400,
+);

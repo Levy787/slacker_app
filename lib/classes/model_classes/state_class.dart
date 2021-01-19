@@ -141,6 +141,7 @@ class States {
 
   static Future<States> getState(String stateName,
       {List<String> returnColumns}) async {
+    //TODO: Filter null values
     States returnState;
     await globals.db.query(
       'States',

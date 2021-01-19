@@ -6,7 +6,6 @@ import 'classes/model_classes/country_class.dart';
 import 'classes/model_classes/guide_class.dart';
 import 'classes/model_classes/state_class.dart';
 
-//This is the state which will be displayed in the explore and guide pages of the app
 String activeState = 'Tasmania';
 
 ///Cache data
@@ -33,21 +32,7 @@ final Map<TabItem, GlobalKey<NavigatorState>> navigatorKeys = {
 
 ///Database Functions
 
-Database db; //Main database for Slacker
-/*Future<Country> getGuideSelectData(String countryName) async {
-  Country country = await Country.getCountry(countryName, ['CountryName']);
-  await country.addStates(['stateName']);
-  for (var state in country.states) {
-    await state.addRegions(['regionName']);
-    for (var region in state.regions) {
-      await region.addAreas(['areaName']);
-      for (var area in region.areas) {
-        await area.addGuides(['guideName']);
-      }
-    }
-  }
-  return country;
-}*/
+Database db;
 
 Future<States> getExploreData(String stateName) async {
   States state = await States.getState(stateName);
