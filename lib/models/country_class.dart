@@ -1,4 +1,4 @@
-import 'package:slacker/classes/model_classes/state_class.dart';
+import 'states_class.dart';
 import 'package:slacker/globals.dart' as globals;
 
 class Country {

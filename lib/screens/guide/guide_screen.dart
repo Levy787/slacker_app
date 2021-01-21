@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:slacker/classes/tab_provider_class.dart';
-import 'package:slacker/classes/model_classes/state_class.dart';
+import 'package:slacker/models/states_class.dart';
 import 'package:slacker/constants.dart';
+import 'package:slacker/services/providers/tab_provider.dart';
 
 class GuideScreen extends StatelessWidget {
   static const String id = 'guide_screen';

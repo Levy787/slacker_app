@@ -1,4 +1,4 @@
-import 'package:slacker/classes/model_classes/guide_area_class.dart';
+import 'guide_area_class.dart';
 import 'package:slacker/globals.dart' as globals;
 
 class Guide {

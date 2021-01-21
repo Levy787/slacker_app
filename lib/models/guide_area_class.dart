@@ -1,4 +1,4 @@
-import 'package:slacker/classes/model_classes/highline_class.dart';
+import 'highline_class.dart';
 import 'package:slacker/globals.dart' as globals;
 
 class GuideSections {

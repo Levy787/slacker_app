@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:slacker/globals.dart';
-import 'package:slacker/screens/explore_general_information_screen.dart';
-import 'package:slacker/screens/explore_screen.dart';
-import 'package:slacker/classes/model_classes/state_class.dart';
-import 'package:slacker/screens/guide_screen.dart';
+import 'package:slacker/screens/explore/explore_general_information_screen.dart';
+import 'package:slacker/screens/explore/explore_screen.dart';
+import 'package:slacker/models/states_class.dart';
+import 'package:slacker/screens/guide/guide_screen.dart';
 import 'package:slacker/screens/splash_screen.dart';
 
 class TabNavigator extends StatelessWidget {

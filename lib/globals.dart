@@ -2,11 +2,13 @@ library my_prj.globals;
 
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'classes/model_classes/country_class.dart';
-import 'classes/model_classes/guide_class.dart';
-import 'classes/model_classes/state_class.dart';
+import 'models/country_class.dart';
+import 'models/guide_class.dart';
+import 'models/states_class.dart';
 
 String activeState = 'Tasmania';
+
+//TODO: get rid of globals!!
 
 ///Cache data
 Future<States> exploreData = getExploreData('Tasmania');

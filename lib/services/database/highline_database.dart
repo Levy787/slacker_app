@@ -6,7 +6,7 @@ import 'dart:typed_data';
 import 'package:flutter/services.dart';
 import 'package:slacker/globals.dart' as globals;
 
-import 'model_classes/state_class.dart';
+import 'package:slacker/models/states_class.dart';
 
 //TODO: Maybe implement a typedef for the selectChildrenOfParent
 

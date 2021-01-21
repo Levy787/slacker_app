@@ -1,8 +1,5 @@
-import 'package:slacker/classes/model_classes/region_class.dart';
-import 'package:flutter/material.dart';
+import 'region_class.dart';
 import 'package:slacker/globals.dart' as globals;
-import 'package:slacker/screens/explore_general_information_screen.dart';
-import 'package:slacker/widgets/image_card.dart';
 
 class States {
   int stateId;
@@ -114,29 +111,6 @@ class States {
       },
     );
     return returnMap;
-  }
-
-  List<Widget> getExploreGeneralInformationCards(BuildContext context) {
-    Map<String, String> nonNullGeneralInformation = getGeneralInformation();
-    List<Widget> returnWidgets = [];
-
-    for (var heading in nonNullGeneralInformation.keys) {
-      returnWidgets.add(
-        ImageCard(
-          imageDirectory: 'assets/images/retro_logo.png',
-          heading: heading,
-          cardHeight: 290.0,
-          margin: EdgeInsets.all(15.0),
-          onTap: () {
-            Navigator.of(context).pushNamed(
-              ExploreGeneralInformationScreen.id,
-              arguments: {'displayHtml': nonNullGeneralInformation[heading]},
-            );
-          },
-        ),
-      );
-    }
-    return returnWidgets;
   }
 
   static Future<States> getState(String stateName,

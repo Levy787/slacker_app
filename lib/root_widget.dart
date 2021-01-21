@@ -1,61 +1,40 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:slacker/classes/drawer_provider.dart';
-import 'package:slacker/classes/tab_provider_class.dart';
-import 'package:slacker/classes/model_classes/state_class.dart';
-import 'package:slacker/screens/navigation_drawer.dart';
-import 'classes/bottom_navigation.dart';
+import 'services/providers/drawer_provider.dart';
+import 'services/providers/tab_provider.dart';
+import 'package:slacker/models/states_class.dart';
+import 'widgets/drawer/guide_navigation_drawer.dart';
+import 'widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
 import 'package:provider/provider.dart';
-import 'classes/tab_navigator.dart';
+import 'services/navigators/tab_navigator.dart';
 import 'globals.dart';
 import 'package:tuple/tuple.dart';
 
 class RootWidget extends StatelessWidget {
   static const String id = 'root_widget';
-  Future<void> initProvider(TabProvider tabProvider) async {
-    await States.getState(activeState)
-        .then((state) => tabProvider.exploreStateCache = state);
+
+  Future<bool> _onWillPop(
+      TabItem currentTab, TabItem homeTab, Function selectHome) async {
+    final isFirstRouteInCurrentTab =
+        !await navigatorKeys[currentTab].currentState.maybePop();
+    if (isFirstRouteInCurrentTab) {
+      // if not on the 'main' tab
+      if (currentTab != homeTab) {
+        // select 'main' tab
+        selectHome(homeTab);
+        // back button handled by app
+        return false;
+      }
+    }
+    // let system handle back button if we're on the first route
+    return isFirstRouteInCurrentTab;
   }
 
-  AppBar feedAppBar({BuildContext context}) {
+  AppBar _buildAppBar({TabItem currentTab, TextStyle headingStyle}) {
     return AppBar(
-      automaticallyImplyLeading: false,
+      automaticallyImplyLeading: (currentTab == TabItem.guide),
       title: Text(
-        'Feed',
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            .copyWith(fontWeight: FontWeight.w700),
-      ),
-      backgroundColor: Colors.white,
-      centerTitle: true,
-    );
-  }
-
-  AppBar exploreAppBar({BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text(
-        'Explore',
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            .copyWith(fontWeight: FontWeight.w700),
-      ),
-      backgroundColor: Colors.white,
-      centerTitle: true,
-    );
-  }
-
-  AppBar guideAppBar({BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: true,
-      title: Text(
-        'Guide',
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            .copyWith(fontWeight: FontWeight.w700),
+        tabName[currentTab],
+        style: headingStyle,
       ),
       backgroundColor: Colors.white,
       centerTitle: true,
@@ -63,58 +42,15 @@ class RootWidget extends StatelessWidget {
     );
   }
 
-  AppBar mapAppBar({BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text(
-        'Map',
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            .copyWith(fontWeight: FontWeight.w700),
-      ),
-      backgroundColor: Colors.white,
-      centerTitle: true,
-    );
-  }
-
-  AppBar profileAppBar({BuildContext context}) {
-    return AppBar(
-      automaticallyImplyLeading: false,
-      title: Text(
-        'Profile',
-        style: Theme.of(context)
-            .textTheme
-            .headline6
-            .copyWith(fontWeight: FontWeight.w700),
-      ),
-      backgroundColor: Colors.white,
-      centerTitle: true,
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    print('Root widget built');
     TabProvider tabProvider = Provider.of<TabProvider>(context, listen: false);
     return WillPopScope(
-      onWillPop: () async {
-        final isFirstRouteInCurrentTab =
-            !await navigatorKeys[tabProvider.currentTab]
-                .currentState
-                .maybePop();
-        if (isFirstRouteInCurrentTab) {
-          // if not on the 'main' tab
-          if (tabProvider.currentTab != tabProvider.homeTab) {
-            // select 'main' tab
-            tabProvider.selectTab(tabProvider.homeTab);
-            // back button handled by app
-            return false;
-          }
-        }
-        // let system handle back button if we're on the first route
-        return isFirstRouteInCurrentTab;
-      },
+      onWillPop: () => _onWillPop(
+        tabProvider.currentTab,
+        tabProvider.homeTab,
+        tabProvider.selectTab,
+      ),
       child: Scaffold(
         drawer: ChangeNotifierProvider<DrawerProvider>(
           create: (_) => DrawerProvider(),
@@ -124,84 +60,91 @@ class RootWidget extends StatelessWidget {
         appBar: PreferredSize(
           preferredSize: Size.fromHeight(60),
           child: Selector<TabProvider, TabItem>(
-            selector: (context, tp) => tp.currentTab,
-            builder: (_, currentTab, __) {
-              if (currentTab == TabItem.feed) {
-                return feedAppBar(context: context);
-              } else if (currentTab == TabItem.explore) {
-                return exploreAppBar(context: context);
-              } else if (currentTab == TabItem.guide) {
-                return guideAppBar(context: context);
-              } else if (currentTab == TabItem.map) {
-                return mapAppBar(context: context);
-              } else if (currentTab == TabItem.profile) {
-                return profileAppBar(context: context);
-              } else {
-                throw ('Cannot find TabItem to get appBar');
-              }
-            },
+            selector: (context, tabProvider) => tabProvider.currentTab,
+            builder: (context, currentTab, __) => _buildAppBar(
+              currentTab: currentTab,
+              headingStyle: Theme.of(context)
+                  .textTheme
+                  .headline6
+                  .copyWith(fontWeight: FontWeight.w700),
+            ),
           ),
         ),
-        body: Stack(children: <Widget>[
-          Selector<TabProvider, bool>(
-            selector: (_, tp) => tp.feedOffstage,
-            builder: (_, feedOffstage, __) {
-              return Offstage(
-                offstage: feedOffstage,
-                child: TabNavigator(
-                  navigatorKey: navigatorKeys[TabItem.feed],
-                  tabItem: TabItem.feed,
+        body: Selector<TabProvider, States>(
+          selector: (_, currentState) => currentState.exploreStateCache,
+          builder: (_, currentState, __) {
+            if (currentState == null) {
+              return Container(
+                alignment: Alignment.topCenter,
+                padding:
+                    EdgeInsets.symmetric(vertical: 150.0, horizontal: 75.0),
+                child: Image.asset('assets/images/logo_retro.png'),
+              );
+            } else {
+              return Stack(children: <Widget>[
+                Selector<TabProvider, bool>(
+                  selector: (_, tp) => tp.feedOffstage,
+                  builder: (_, feedOffstage, __) {
+                    return Offstage(
+                      offstage: feedOffstage,
+                      child: TabNavigator(
+                        navigatorKey: navigatorKeys[TabItem.feed],
+                        tabItem: TabItem.feed,
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          Selector<TabProvider, Tuple2<bool, States>>(
-            selector: (_, exploreData) => Tuple2(
-                exploreData.exploreOffstage, exploreData.exploreStateCache),
-            builder: (_, exploreOffstage, __) {
-              return Offstage(
-                offstage: exploreOffstage.item1,
-                child: ExploreNavigator(
-                    navigatorKey: navigatorKeys[TabItem.explore]),
-              );
-            },
-          ),
-          Selector<TabProvider, bool>(
-            selector: (_, guideData) => guideData.guideOffstage,
-            builder: (_, guideOffstage, __) {
-              return Offstage(
-                offstage: guideOffstage,
-                child: GuideNavigator(
-                  navigatorKey: navigatorKeys[TabItem.guide],
+                Selector<TabProvider, Tuple2<bool, States>>(
+                  selector: (_, exploreData) => Tuple2(
+                      exploreData.exploreOffstage,
+                      exploreData.exploreStateCache),
+                  builder: (_, exploreOffstage, __) {
+                    return Offstage(
+                      offstage: exploreOffstage.item1,
+                      child: ExploreNavigator(
+                          navigatorKey: navigatorKeys[TabItem.explore]),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          Selector<TabProvider, bool>(
-            selector: (_, mapData) => mapData.mapOffstage,
-            builder: (_, mapOffstage, __) {
-              return Offstage(
-                offstage: mapOffstage,
-                child: TabNavigator(
-                  navigatorKey: navigatorKeys[TabItem.map],
-                  tabItem: TabItem.map,
+                Selector<TabProvider, bool>(
+                  selector: (_, guideData) => guideData.guideOffstage,
+                  builder: (_, guideOffstage, __) {
+                    return Offstage(
+                      offstage: guideOffstage,
+                      child: GuideNavigator(
+                        navigatorKey: navigatorKeys[TabItem.guide],
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-          Selector<TabProvider, bool>(
-            selector: (_, profileData) => profileData.profileOffstage,
-            builder: (_, profileOffstage, __) {
-              return Offstage(
-                offstage: profileOffstage,
-                child: TabNavigator(
-                  navigatorKey: navigatorKeys[TabItem.profile],
-                  tabItem: TabItem.profile,
+                Selector<TabProvider, bool>(
+                  selector: (_, mapData) => mapData.mapOffstage,
+                  builder: (_, mapOffstage, __) {
+                    return Offstage(
+                      offstage: mapOffstage,
+                      child: TabNavigator(
+                        navigatorKey: navigatorKeys[TabItem.map],
+                        tabItem: TabItem.map,
+                      ),
+                    );
+                  },
                 ),
-              );
-            },
-          ),
-        ]),
+                Selector<TabProvider, bool>(
+                  selector: (_, profileData) => profileData.profileOffstage,
+                  builder: (_, profileOffstage, __) {
+                    return Offstage(
+                      offstage: profileOffstage,
+                      child: TabNavigator(
+                        navigatorKey: navigatorKeys[TabItem.profile],
+                        tabItem: TabItem.profile,
+                      ),
+                    );
+                  },
+                ),
+              ]);
+            }
+          },
+        ),
         bottomNavigationBar: Selector<TabProvider, TabItem>(
           selector: (_, tab) => tab.currentTab,
           builder: (_, currentTab, __) {

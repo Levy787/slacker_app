@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
-import '../globals.dart';
-import 'model_classes/state_class.dart';
+import 'package:slacker/globals.dart';
+import 'package:slacker/models/states_class.dart';
+import 'package:slacker/services/database/highline_database.dart';
 
 class TabProvider with ChangeNotifier {
   TabItem homeTab = TabItem.explore;
@@ -15,13 +16,23 @@ class TabProvider with ChangeNotifier {
 
   States exploreStateCache;
 
-  TabProvider(this.exploreStateCache) {
+  TabProvider() {
+    print('Tab Provider init');
+    init('Tasmania');
     currentTab = homeTab;
     feedOffstage = TabItem.feed != currentTab;
     exploreOffstage = TabItem.explore != currentTab;
     guideOffstage = TabItem.guide != currentTab;
     mapOffstage = TabItem.map != currentTab;
     profileOffstage = TabItem.profile != currentTab;
+  }
+
+  Future<void> init(String initialState) async {
+    print('Getting State Cache');
+    exploreStateCache =
+        await HighlineDbProvider.getActiveStateCache(initialState);
+    print('Got state Cache');
+    notifyListeners();
   }
 
   void selectTab(TabItem tabItem) {

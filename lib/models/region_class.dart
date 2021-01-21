@@ -1,4 +1,4 @@
-import 'package:slacker/classes/model_classes/area_class.dart';
+import 'area_class.dart';
 import 'package:slacker/globals.dart' as globals;
 
 class Region {

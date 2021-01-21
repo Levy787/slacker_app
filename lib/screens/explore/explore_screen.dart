@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'package:slacker/classes/model_classes/state_class.dart';
-import 'package:slacker/classes/tab_provider_class.dart';
-import 'package:slacker/widgets/custom_tab_indicator.dart';
 import 'package:slacker/globals.dart' as globals;
+import 'package:slacker/models/states_class.dart';
+import 'package:slacker/services/providers/tab_provider.dart';
+import 'package:slacker/widgets/custom/rounded_rectangle_tab_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 const double kExplorePageHorizontalPadding = 15.0;
@@ -91,6 +91,29 @@ class ExploreScreen extends StatelessWidget {
     );
   }
 
+  /*List<Widget> getExploreGeneralInformationCards(BuildContext context) {
+    Map<String, String> nonNullGeneralInformation = getGeneralInformation();
+    List<Widget> returnWidgets = [];
+
+    for (var heading in nonNullGeneralInformation.keys) {
+      returnWidgets.add(
+        ImageCard(
+          imageDirectory: 'assets/images/retro_logo.png',
+          heading: heading,
+          cardHeight: 290.0,
+          margin: EdgeInsets.all(15.0),
+          onTap: () {
+            Navigator.of(context).pushNamed(
+              ExploreGeneralInformationScreen.id,
+              arguments: {'displayHtml': nonNullGeneralInformation[heading]},
+            );
+          },
+        ),
+      );
+    }
+    return returnWidgets;
+  }*/
+
   @override
   Widget build(BuildContext context) {
     TabProvider tabProvider = Provider.of<TabProvider>(context);
@@ -104,10 +127,10 @@ class ExploreScreen extends StatelessWidget {
             stateName: stateData.stateName,
             detailedDescription: stateData.detailedDescription,
           ),
-          generalInformation(
+          /*generalInformation(
             context: context,
             cards: stateData.getExploreGeneralInformationCards(context),
-          ),
+          ),*/
           Container(
             height: 30,
             margin: EdgeInsets.symmetric(horizontal: 5.0, vertical: 15.0),
