@@ -5,7 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:slacker/globals.dart' as globals;
 import 'package:slacker/models/states_class.dart';
-import 'package:slacker/services/providers/tab_provider.dart';
+import 'package:slacker/services/providers/state_provider.dart';
 import 'package:slacker/widgets/custom/rounded_rectangle_tab_indicator.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -68,7 +68,7 @@ class ExploreScreen extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 5.0),
             child: Text(
-              'Want to know more about ${globals.activeState}?\nHave a look at it\'s history, ethics and other guides.',
+              'Want to know more about Tasmania?\nHave a look at it\'s history, ethics and other guides.',
               style: Theme.of(context)
                   .textTheme
                   .bodyText2
@@ -116,8 +116,8 @@ class ExploreScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TabProvider tabProvider = Provider.of<TabProvider>(context);
-    States stateData = tabProvider.exploreStateCache;
+    StateProvider tabProvider = Provider.of<StateProvider>(context);
+    States stateData = tabProvider.activeStateData;
     return Container(
       child: ListView(
         physics: BouncingScrollPhysics(),

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'services/database/highline_database.dart';
 import 'package:slacker/root_widget.dart';
-import 'services/providers/tab_provider.dart';
+import 'services/providers/state_provider.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,8 +13,9 @@ Future<void> main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    print('Main widget build');
     return ChangeNotifierProvider(
-      create: (_) => TabProvider(),
+      create: (_) => StateProvider(),
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         home: RootWidget(),

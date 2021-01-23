@@ -1,44 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:slacker/globals.dart';
 import 'package:slacker/screens/explore/explore_general_information_screen.dart';
 import 'package:slacker/screens/explore/explore_screen.dart';
-import 'package:slacker/models/states_class.dart';
+import 'package:slacker/screens/feed/feed_screen.dart';
 import 'package:slacker/screens/guide/guide_screen.dart';
-import 'package:slacker/screens/splash_screen.dart';
+import 'package:slacker/screens/map/map_screen.dart';
+import 'package:slacker/screens/profile/profile_screen.dart';
 
-class TabNavigator extends StatelessWidget {
-  TabNavigator({this.navigatorKey, this.tabItem});
-  final GlobalKey<NavigatorState> navigatorKey;
-  final TabItem tabItem;
-
-  Map<String, WidgetBuilder> _routeBuilders(BuildContext context,
-      {States state}) {
-    return {
-      SplashScreen.id: (context) => SplashScreen(),
-      ExploreScreen.id: (context) => ExploreScreen()
-    };
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    var routeBuilders = _routeBuilders(context);
-
-    return Navigator(
-        key: navigatorKey,
-        initialRoute: SplashScreen.id,
-        onGenerateRoute: (routeSettings) {
-          return MaterialPageRoute(
-              builder: (context) => routeBuilders[routeSettings.name](context));
-        });
-  }
-}
-
-class GuideNavigator extends StatelessWidget {
-  GuideNavigator({this.navigatorKey});
+class FeedNavigator extends StatelessWidget {
+  FeedNavigator({this.navigatorKey});
   final GlobalKey<NavigatorState> navigatorKey;
 
   Route<dynamic> generateRoute(RouteSettings settings) {
-    if (settings.name == GuideScreen.id) {
+    if (settings.name == FeedScreen.id) {
       return generateGuideRoute(settings);
     } else {
       throw ('Navigation page cannot be found');
@@ -48,7 +21,7 @@ class GuideNavigator extends StatelessWidget {
   Route<dynamic> generateGuideRoute(RouteSettings settings) {
     return MaterialPageRoute(
       builder: (context) {
-        return GuideScreen();
+        return FeedScreen();
       },
     );
   }
@@ -57,7 +30,7 @@ class GuideNavigator extends StatelessWidget {
   Widget build(BuildContext context) {
     return Navigator(
       key: navigatorKey,
-      initialRoute: GuideScreen.id,
+      initialRoute: FeedScreen.id,
       onGenerateRoute: (routeSettings) => generateRoute(routeSettings),
     );
   }
@@ -102,6 +75,96 @@ class ExploreNavigator extends StatelessWidget {
     return Navigator(
       key: navigatorKey,
       initialRoute: ExploreScreen.id,
+      onGenerateRoute: (routeSettings) => generateRoute(routeSettings),
+    );
+  }
+}
+
+class GuideNavigator extends StatelessWidget {
+  GuideNavigator({this.navigatorKey});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    if (settings.name == GuideScreen.id) {
+      return generateGuideRoute(settings);
+    } else {
+      throw ('Navigation page cannot be found');
+    }
+  }
+
+  Route<dynamic> generateGuideRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return GuideScreen();
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: navigatorKey,
+      initialRoute: GuideScreen.id,
+      onGenerateRoute: (routeSettings) => generateRoute(routeSettings),
+    );
+  }
+}
+
+class MapNavigator extends StatelessWidget {
+  MapNavigator({this.navigatorKey});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    if (settings.name == MapScreen.id) {
+      return generateGuideRoute(settings);
+    } else {
+      throw ('Navigation page cannot be found');
+    }
+  }
+
+  Route<dynamic> generateGuideRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return MapScreen();
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: navigatorKey,
+      initialRoute: MapScreen.id,
+      onGenerateRoute: (routeSettings) => generateRoute(routeSettings),
+    );
+  }
+}
+
+class ProfileNavigator extends StatelessWidget {
+  ProfileNavigator({this.navigatorKey});
+  final GlobalKey<NavigatorState> navigatorKey;
+
+  Route<dynamic> generateRoute(RouteSettings settings) {
+    if (settings.name == ProfileScreen.id) {
+      return generateGuideRoute(settings);
+    } else {
+      throw ('Navigation page cannot be found');
+    }
+  }
+
+  Route<dynamic> generateGuideRoute(RouteSettings settings) {
+    return MaterialPageRoute(
+      builder: (context) {
+        return ProfileScreen();
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Navigator(
+      key: navigatorKey,
+      initialRoute: ProfileScreen.id,
       onGenerateRoute: (routeSettings) => generateRoute(routeSettings),
     );
   }

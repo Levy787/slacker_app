@@ -2,16 +2,8 @@ library my_prj.globals;
 
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
-import 'models/country_class.dart';
 import 'models/guide_class.dart';
 import 'models/states_class.dart';
-
-String activeState = 'Tasmania';
-
-//TODO: get rid of globals!!
-
-///Cache data
-Future<States> exploreData = getExploreData('Tasmania');
 
 ///Bottom Navigation Code
 enum TabItem { feed, explore, guide, map, profile }

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'services/providers/drawer_provider.dart';
-import 'services/providers/tab_provider.dart';
+import 'services/providers/state_provider.dart';
 import 'package:slacker/models/states_class.dart';
 import 'widgets/drawer/guide_navigation_drawer.dart';
 import 'widgets/bottom_navigation_bar/bottom_navigation_bar.dart';
@@ -12,15 +12,19 @@ import 'package:tuple/tuple.dart';
 class RootWidget extends StatelessWidget {
   static const String id = 'root_widget';
 
-  Future<bool> _onWillPop(
-      TabItem currentTab, TabItem homeTab, Function selectHome) async {
+  //TODO: _onWillPop should pop drawer
+  Future<bool> _onWillPop({
+    TabItem currentTab,
+    TabItem homeTab,
+    Function selectTab,
+  }) async {
     final isFirstRouteInCurrentTab =
         !await navigatorKeys[currentTab].currentState.maybePop();
     if (isFirstRouteInCurrentTab) {
       // if not on the 'main' tab
       if (currentTab != homeTab) {
         // select 'main' tab
-        selectHome(homeTab);
+        selectTab(homeTab);
         // back button handled by app
         return false;
       }
@@ -44,23 +48,25 @@ class RootWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    TabProvider tabProvider = Provider.of<TabProvider>(context, listen: false);
+    print('Root widget build');
+    StateProvider tabProvider =
+        Provider.of<StateProvider>(context, listen: false);
     return WillPopScope(
       onWillPop: () => _onWillPop(
-        tabProvider.currentTab,
-        tabProvider.homeTab,
-        tabProvider.selectTab,
+        currentTab: tabProvider.currentTab,
+        homeTab: tabProvider.homeTab,
+        selectTab: tabProvider.selectTab,
       ),
       child: Scaffold(
         drawer: ChangeNotifierProvider<DrawerProvider>(
-          create: (_) => DrawerProvider(),
+          create: (_) => DrawerProvider(tabProvider.activeStateData),
           child: NavigationDrawer(),
         ),
         drawerEnableOpenDragGesture: false,
         appBar: PreferredSize(
-          preferredSize: Size.fromHeight(60),
-          child: Selector<TabProvider, TabItem>(
-            selector: (context, tabProvider) => tabProvider.currentTab,
+          preferredSize: Size.fromHeight(56.0),
+          child: Selector<StateProvider, TabItem>(
+            selector: (_, tabProvider) => tabProvider.currentTab,
             builder: (context, currentTab, __) => _buildAppBar(
               currentTab: currentTab,
               headingStyle: Theme.of(context)
@@ -70,8 +76,8 @@ class RootWidget extends StatelessWidget {
             ),
           ),
         ),
-        body: Selector<TabProvider, States>(
-          selector: (_, currentState) => currentState.exploreStateCache,
+        body: Selector<StateProvider, States>(
+          selector: (_, tabProvider) => tabProvider.activeStateData,
           builder: (_, currentState, __) {
             if (currentState == null) {
               return Container(
@@ -82,22 +88,20 @@ class RootWidget extends StatelessWidget {
               );
             } else {
               return Stack(children: <Widget>[
-                Selector<TabProvider, bool>(
-                  selector: (_, tp) => tp.feedOffstage,
+                Selector<StateProvider, bool>(
+                  selector: (_, tabProvider) => tabProvider.feedOffstage,
                   builder: (_, feedOffstage, __) {
                     return Offstage(
                       offstage: feedOffstage,
-                      child: TabNavigator(
+                      child: FeedNavigator(
                         navigatorKey: navigatorKeys[TabItem.feed],
-                        tabItem: TabItem.feed,
                       ),
                     );
                   },
                 ),
-                Selector<TabProvider, Tuple2<bool, States>>(
-                  selector: (_, exploreData) => Tuple2(
-                      exploreData.exploreOffstage,
-                      exploreData.exploreStateCache),
+                Selector<StateProvider, Tuple2<bool, States>>(
+                  selector: (_, tabProvider) => Tuple2(
+                      tabProvider.exploreOffstage, tabProvider.activeStateData),
                   builder: (_, exploreOffstage, __) {
                     return Offstage(
                       offstage: exploreOffstage.item1,
@@ -106,8 +110,8 @@ class RootWidget extends StatelessWidget {
                     );
                   },
                 ),
-                Selector<TabProvider, bool>(
-                  selector: (_, guideData) => guideData.guideOffstage,
+                Selector<StateProvider, bool>(
+                  selector: (_, tabProvider) => tabProvider.guideOffstage,
                   builder: (_, guideOffstage, __) {
                     return Offstage(
                       offstage: guideOffstage,
@@ -117,26 +121,24 @@ class RootWidget extends StatelessWidget {
                     );
                   },
                 ),
-                Selector<TabProvider, bool>(
-                  selector: (_, mapData) => mapData.mapOffstage,
+                Selector<StateProvider, bool>(
+                  selector: (_, tabProvider) => tabProvider.mapOffstage,
                   builder: (_, mapOffstage, __) {
                     return Offstage(
                       offstage: mapOffstage,
-                      child: TabNavigator(
+                      child: MapNavigator(
                         navigatorKey: navigatorKeys[TabItem.map],
-                        tabItem: TabItem.map,
                       ),
                     );
                   },
                 ),
-                Selector<TabProvider, bool>(
-                  selector: (_, profileData) => profileData.profileOffstage,
+                Selector<StateProvider, bool>(
+                  selector: (_, tabProvider) => tabProvider.profileOffstage,
                   builder: (_, profileOffstage, __) {
                     return Offstage(
                       offstage: profileOffstage,
-                      child: TabNavigator(
+                      child: ProfileNavigator(
                         navigatorKey: navigatorKeys[TabItem.profile],
-                        tabItem: TabItem.profile,
                       ),
                     );
                   },
@@ -145,8 +147,8 @@ class RootWidget extends StatelessWidget {
             }
           },
         ),
-        bottomNavigationBar: Selector<TabProvider, TabItem>(
-          selector: (_, tab) => tab.currentTab,
+        bottomNavigationBar: Selector<StateProvider, TabItem>(
+          selector: (_, tabProvider) => tabProvider.currentTab,
           builder: (_, currentTab, __) {
             return BottomNavigation(
               currentTab: currentTab,
